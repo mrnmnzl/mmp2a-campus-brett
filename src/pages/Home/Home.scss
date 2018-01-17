@@ -1,0 +1,9 @@
+.posts-container {
+    position: absolute;
+    top: 130px;
+
+    width: 100%;
+    height: calc(100% - 130px - 50px);
+
+    overflow: auto;
+}

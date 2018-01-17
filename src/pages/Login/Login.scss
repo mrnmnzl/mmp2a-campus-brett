@@ -1,0 +1,17 @@
+.logo-login-dark {
+    width: 300px;
+    margin: 50px calc((100% - 300px) / 2);
+}
+
+.container-login {
+    width: 100%;
+    height: calc(100% - 140px - 200px);
+
+    position: absolute;
+    top: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: middle;
+    align-items: center;
+}
