@@ -23,7 +23,7 @@ export default class LargeButton extends Component {
         );
 
         return (
-            <button className={classList}>{this.props.text}</button>
+            <button className={classList} id={this.props.id}>{this.props.text}</button>
         );
     }
 }

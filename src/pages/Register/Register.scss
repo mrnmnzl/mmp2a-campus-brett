@@ -1,12 +1,18 @@
+.logo-login-dark {
+    width: 300px;
+    margin: 50px calc((100% - 300px) / 2);
+    margin-bottom: 10px;
+}
+
 .register-container {
     width: 100%;
-    height: calc(100% - 140px - 90px);
+    height: calc(100% - 170px - 150px);
 
     position: absolute;
-    top: 90px;
+    top: 150px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;    
 }

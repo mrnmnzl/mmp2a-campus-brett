@@ -6,19 +6,20 @@ import LinkBar from '../../components/LinkBar';
 import HeaderLogo from '../../components/HeaderLogo';
 import InputLine from '../../components/InputLine';
 import LargeButton from '../../components/LargeButton';
+import LogoLight from '../../images/logo-light.png';
 import './Register.css';
 
 export default class Register extends Component {
     render() {
         return (
             <React.Fragment>
-                <HeaderLogo theme="dark" />
+                <img className="logo-login-dark" src={LogoLight} alt="Campus Brett Logo" />
                 <div className="register-container">
-                    <InputLine type="text" placeholder="Name" name="name" id="name" />
-                    <InputLine type="email" placeholder="Email" name="email" id="email" />
-                    <InputLine type="password" placeholder="Passwort" name="password" id="password" />
-                    <InputLine type="password" placeholder="Passwort wiederholen" name="passwordconf" id="password" />
-                    <LargeButton theme="light" text="REGISTRIEREN" />
+                    <InputLine type="text" placeholder="Name" name="name" id="register-name" />
+                    <InputLine type="email" placeholder="Email" name="email" id="register-email" />
+                    <InputLine type="password" placeholder="Passwort" name="password" id="register-password" />
+                    <InputLine type="password" placeholder="Passwort wiederholen" name="passwordconf" id="register-password-conf" />
+                    <LargeButton theme="light" text="REGISTRIEREN" id="register-button"/>
                 </div>
                 <SocialBar />
                 <LinkBar text="LOGIN" path="/login" />

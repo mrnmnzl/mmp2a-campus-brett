@@ -5,13 +5,13 @@
 
 .container-login {
     width: 100%;
-    height: calc(100% - 140px - 200px);
+    height: calc(100% - 240px - 200px);
 
     position: absolute;
-    top: 200px;
+    top: 210px;
 
     display: flex;
     flex-direction: column;
-    justify-content: middle;
+    justify-content: space-around;
     align-items: center;
 }
