@@ -1,0 +1,21 @@
+.input-line-auth {
+    width: 300px;
+    padding: 5px;
+    
+    border: none;
+    border-bottom: solid 2px var(--light);
+    
+    font-family: 'Roboto Light', sans-serif;
+    font-size: 16px;
+    color: var(--light);
+
+    margin-bottom: 50px;
+    
+    background-color: var(--dark);
+    
+    &::placeholder {
+      font-family: 'Roboto Light', sans-serif;
+      font-size: 16px;
+      color: var(--light);
+    }
+  }
