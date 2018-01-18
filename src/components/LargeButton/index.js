@@ -16,8 +16,7 @@ export default class LargeButton extends Component {
                 'bg-find': this.props.theme === 'find',
             },
             {
-                'light': this.props.theme === 'search',
-                'light': this.props.theme === 'find',
+                'light': this.props.theme === 'search' || this.props.theme === 'find',
                 'dark': this.props.theme === 'light'
             }
         );
