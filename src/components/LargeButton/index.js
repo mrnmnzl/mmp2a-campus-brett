@@ -13,16 +13,18 @@ export default class LargeButton extends Component {
             {
                 'bg-light': this.props.theme === 'light',
                 'bg-search': this.props.theme === 'search',
-                'bg-find': this.props.theme === 'find',
+                'bg-find': this.props.theme === 'find'
             },
             {
-                'light': this.props.theme === 'search' || this.props.theme === 'find',
-                'dark': this.props.theme === 'light'
+                light: this.props.theme === 'search' || this.props.theme === 'find',
+                dark: this.props.theme === 'light'
             }
         );
 
         return (
-            <button className={classList} id={this.props.id}>{this.props.text}</button>
+            <button className={classList} id={this.props.id} onClick={this.props.onClick}>
+                {this.props.text}
+            </button>
         );
     }
 }
