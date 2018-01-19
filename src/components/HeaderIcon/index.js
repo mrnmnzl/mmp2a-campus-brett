@@ -1,8 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
 import classNames from 'classnames';
-import LogoDark from '../../images/logo-dark.png';
-import LogoLight from '../../images/logo-light.png';
 import './HeaderIcon.css';
 
 export default class HeaderLogo extends Component {
