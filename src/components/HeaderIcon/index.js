@@ -16,9 +16,9 @@ export default class HeaderLogo extends Component {
     );
 
         return (
-            <div class="header-text-icon">
+            <div className="header-text-icon">
                 <p>{this.props.text}</p>
-                <span class={iconClass} onClick={this.props.onClick}/>
+                <span className={iconClass} onClick={this.props.onClick}/>
             </div>
         );
     }
