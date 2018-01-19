@@ -32,6 +32,10 @@ class Authentication {
         const promise = auth.createUserWithEmailAndPassword(email, password);
         promise.catch(e => console.log(e.message));
     }
+
+    logout() {
+        firebase.auth().signOut();
+    }
 }
 
 export default new Authentication();
