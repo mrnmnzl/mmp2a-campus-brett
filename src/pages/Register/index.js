@@ -51,7 +51,7 @@ export default class Register extends Component {
                         id="register-password"
                         onChange={this.handlePasswordChange}
                     />
-                    <LargeButton theme="light" text="REGISTRIEREN" id="register-button" onClick={this.handleSubmit}/>
+                    <LargeButton theme="light" text="REGISTRIEREN" id="register-button" onClick={this.handleSubmit} />
                 </div>
                 <SocialBar />
                 <LinkBar text="LOGIN" path="/login" />

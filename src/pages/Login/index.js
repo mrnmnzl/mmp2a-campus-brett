@@ -10,25 +10,25 @@ import authentification from '../../services/Authentification';
 
 export default class Login extends Component {
     state = {
-        email: "",
-        password: ""
+        email: '',
+        password: ''
     };
 
-    handleEmailChange = (event) => {
+    handleEmailChange = event => {
         this.setState({
             email: event.target.value
         });
-    }
+    };
 
-    handlePasswordChange = (event) => {
+    handlePasswordChange = event => {
         this.setState({
             password: event.target.value
         });
-    }
+    };
 
     handleSubmit = () => {
         authentification.login(this.state.email, this.state.password);
-    }
+    };
 
     render() {
         return (
@@ -51,7 +51,7 @@ export default class Login extends Component {
                         id="login-password"
                         onChange={this.handlePasswordChange}
                     />
-                    <LargeButton theme="light" text="EINLOGGEN" id="login-button" onClick={this.handleSubmit}/>
+                    <LargeButton theme="light" text="EINLOGGEN" id="login-button" onClick={this.handleSubmit} />
                 </div>
                 <SocialBar />
                 <LinkBar text="REGISTRIEREN" path="/register" />
