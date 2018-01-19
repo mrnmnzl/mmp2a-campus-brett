@@ -12,19 +12,14 @@ const config = {
 class Authentication {
     constructor() {
         firebase.initializeApp(config);
-        firebase.auth().onAuthStateChanged(firebaseUser => {
-            if (firebaseUser) {
-                console.log(firebaseUser);
-            } else {
-                console.log('Not logged in!');
-            }
-        });
     }
 
     login(email, password) {
         const auth = firebase.auth();
         const promise = auth.signInWithEmailAndPassword(email, password);
         promise.catch(e => console.log(e.message));
+
+        return promise;
     }
 
     register(email, password) {

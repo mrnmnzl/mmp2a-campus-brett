@@ -27,7 +27,8 @@ export default class Login extends Component {
     };
 
     handleSubmit = () => {
-        authentification.login(this.state.email, this.state.password);
+        authentification.login(this.state.email, this.state.password)
+            .then(() => this.props.history.push('/'));
     };
 
     render() {
