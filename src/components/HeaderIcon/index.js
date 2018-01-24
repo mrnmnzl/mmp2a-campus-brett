@@ -3,7 +3,7 @@ import { Component } from 'react';
 import classNames from 'classnames';
 import './HeaderIcon.css';
 
-export default class HeaderLogo extends Component {
+export default class HeaderIcon extends Component {
     render() {
         const iconClass = classNames({
             'icon-close': this.props.icon === 'close',
