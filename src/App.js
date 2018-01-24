@@ -8,6 +8,7 @@ import SavedPosts from './pages/SavedPosts';
 import Messenger from './pages/Messenger';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import NewPost from './pages/NewPost';
 import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 
 const history = createBrowserHistory();
@@ -22,6 +23,7 @@ class App extends Component {
                         <Route path="/profile" component={Profile} />
                         <Route path="/saved-posts" component={SavedPosts} />
                         <Route path="/messenger" component={Messenger} />
+                        <Route path="/new-post" component={NewPost} />
                     </EnsureLoggedInContainer>
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
