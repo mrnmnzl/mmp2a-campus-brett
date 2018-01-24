@@ -1,0 +1,45 @@
+.input-radio:not(old) {
+    width: 2em;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    opacity: 0;
+  }
+  
+  .input-radio:not(old) + .input-radio-label {
+    display: inline-block;
+    margin-left: -2em;
+    line-height: 1.5em;
+  }
+  
+  .input-radio:not(old) + .input-radio-label > span{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0.25em 0.5em 0.25em 0.25em;
+    border-radius: 100%;
+    background-color: var(--light);
+    vertical-align   : bottom;
+  }
+  
+  .input-radio:not(old):checked + .input-radio.label > span:before{
+    width: 16px;
+    height: 16px;
+    background-color: var(--dark);
+    border-radius: 100%;
+  }
+  
+  .input-radio:not(old):checked + label > span > span{
+    display          : block;
+    width            : 12px;
+    height           : 12px;
+    margin           : 2px;
+    border-radius: 100%;
+    background-color: var(--search);
+  }
+  
+  .input-radio-label {
+    font-family: 'Roboto Thin', sans-serif;;
+    font-size: 16px;
+    color: var(--light);
+  }
