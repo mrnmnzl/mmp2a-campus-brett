@@ -1,14 +1,23 @@
 import React from 'react';
 import { Component } from 'react';
+import './RadioCategory.css';
 
 export default class RadioCategory extends Component {
     render() {
         return (
             <React.Fragment>
-                <input class="input-radio" type="radio" id="se" name="category" value="search"/>
-                <label class="input-radio-label" for="se"><span><span></span></span>Suchen</label> 
-                <input class="input-radio"type="radio" id="fi" name="category" value="find"/>
-                <label class="input-radio-label" for="fi"><span><span></span></span>Finden</label>
+                <input className="input-radio" type="radio" id="se" name="category" value="search" />
+                <label className="input-radio-label" htmlFor="se">
+                    <span>
+                        <span />
+                    </span>Suchen
+                </label>
+                <input className="input-radio" type="radio" id="fi" name="category" value="find" />
+                <label className="input-radio-label" htmlFor="fi">
+                    <span>
+                        <span />
+                    </span>Finden
+                </label>
             </React.Fragment>
         );
     }
