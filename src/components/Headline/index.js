@@ -1,11 +1,11 @@
 import React from 'react';
 import { Component } from 'react';
-import 'Headline.scss';
+import './Headline.css';
 
 export default class Headline extends Component {
     render() {
         return (
-            <p>{this.props.text}</p>
+            <p className="headline">{this.props.text}</p>
         );
     }
 }
