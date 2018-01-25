@@ -6,7 +6,7 @@ export default class InputLine extends Component {
     render() {
         return (
             <input
-                className="input-line-auth"
+                className="input-line"
                 type={this.props.type}
                 value={this.props.value}
                 placeholder={this.props.placeholder}
