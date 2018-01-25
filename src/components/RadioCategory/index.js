@@ -6,13 +6,13 @@ export default class RadioCategory extends Component {
     render() {
         return (
             <React.Fragment>
-                <input className="input-radio" type="radio" id="se" name="category" value="search" />
+                <input className="input-radio input-radio-search" type="radio" id="se" name="category" value="search" />
                 <label className="input-radio-label" htmlFor="se">
                     <span>
                         <span />
                     </span>Suchen
                 </label>
-                <input className="input-radio" type="radio" id="fi" name="category" value="find" />
+                <input className="input-radio input-radio-find" type="radio" id="fi" name="category" value="find" />
                 <label className="input-radio-label" htmlFor="fi">
                     <span>
                         <span />
