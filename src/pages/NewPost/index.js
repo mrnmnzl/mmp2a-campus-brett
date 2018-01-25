@@ -3,6 +3,7 @@ import { Component } from 'react';
 import HeaderIcon from '../../components/HeaderIcon';
 import RadioCategory from '../../components/RadioCategory';
 import Headline from '../../components/Headline';
+import InputField from '../../components/InputField';
 import './NewPost.css';
 
 export default class NewPost extends Component {
@@ -14,6 +15,7 @@ export default class NewPost extends Component {
                     <Headline text="KATEGORIE" />
                     <RadioCategory />
                     <Headline text="TITEL" />
+                    <InputField placeholder="Titel..." />
                     <Headline text="BESCHREIBUNG" />
                 </form>
             </React.Fragment>
