@@ -4,6 +4,7 @@ import HeaderIcon from '../../components/HeaderIcon';
 import RadioCategory from '../../components/RadioCategory';
 import Headline from '../../components/Headline';
 import InputField from '../../components/InputField';
+import InputArea from '../../components/InputArea';
 import './NewPost.css';
 
 export default class NewPost extends Component {
@@ -17,6 +18,7 @@ export default class NewPost extends Component {
                     <Headline text="TITEL" />
                     <InputField placeholder="Titel..." />
                     <Headline text="BESCHREIBUNG" />
+                    <InputArea placeholder="Beschreibung einfügen"/>
                 </form>
             </React.Fragment>
         );

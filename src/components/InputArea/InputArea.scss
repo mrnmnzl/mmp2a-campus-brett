@@ -1,0 +1,21 @@
+.input-area {
+    height: 100px;
+    width: 300px;
+    
+    padding: 5px 10px;
+    
+    border: none;
+    border-radius: 2px;
+    
+    background-color: var(--light);
+      
+    font-family: 'Roboto Thin', sans-serif;
+    font-size: 16px;
+    color: var(--dark);
+    
+    &::placeholder {
+      font-family: 'Roboto Thin', sans-serif;
+      font-size: 16px;
+      color: var(--dark);
+    }
+  }
