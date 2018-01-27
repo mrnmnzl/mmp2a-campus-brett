@@ -3,7 +3,7 @@
     grid-gap: 15px;
     grid-template-columns: 4fr 1fr;
     grid-template-rows: auto auto auto auto;
-    grid-template-areas: "tags tags";
+    grid-template-areas: "header header" "title title" "description description" "tags tags";
     .post-tags-container {
         grid-area: tags;
         margin-top: 10px;

@@ -20,6 +20,7 @@ export default class NewPost extends Component {
                     <InputField placeholder="Titel..." />
                     <Headline text="BESCHREIBUNG" />
                     <InputArea placeholder="Beschreibung einfügen"/>
+                    <Headline text="BILD HINZUFÜGEN" />
                     <Headline text="TAGS" />
                     <CategoryTag text="werkzeug"/>
                 </form>
