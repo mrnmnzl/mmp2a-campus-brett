@@ -1,20 +1,7 @@
-.post-container {
-    display: grid;
-    grid-gap: 15px;
-    grid-template-columns: 4fr 1fr;
-    grid-template-rows: auto auto auto auto;
-    grid-template-areas: "header header" "title title" "description description" "tags tags";
-    .post-tags-container {
-        grid-area: tags;
-        margin-top: 10px;
-        
-        line-height: 28px;
-    }
-}
-
 .tag {
     margin-left: 0;
     margin-right: 5px;
+    
     padding: 3px 15px;
     
     border-radius: 20px;
