@@ -2,9 +2,11 @@
   "name": "campus-brett",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://marionmenzl.github.io/campus-brett",
   "dependencies": {
     "classnames": "^2.2.5",
     "firebase": "^4.8.2",
+    "gh-pages": "^1.1.0",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
@@ -21,6 +23,8 @@
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
