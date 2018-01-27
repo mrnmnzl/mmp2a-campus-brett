@@ -20,7 +20,8 @@ export default class NewPost extends Component {
                     <InputField placeholder="Titel..." />
                     <Headline text="BESCHREIBUNG" />
                     <InputArea placeholder="Beschreibung einfügen"/>
-                    <CategoryTag />
+                    <Headline text="TAGS" />
+                    <CategoryTag text="werkzeug"/>
                 </form>
             </React.Fragment>
         );
