@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import NewPost from './pages/NewPost';
 import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
+import Search from './pages/Search/index';
 
 const history = createBrowserHistory();
 
@@ -24,6 +25,7 @@ class App extends Component {
                         <Route path="/saved-posts" component={SavedPosts} />
                         <Route path="/messenger" component={Messenger} />
                         <Route path="/new-post" component={NewPost} />
+                        <Route path="/search" component={Search} />
                     </EnsureLoggedInContainer>
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
