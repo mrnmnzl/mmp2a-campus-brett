@@ -5,7 +5,13 @@ import './InputField.css';
 export default class InputField extends Component {
     render() {
         return (
-            <input className="input-field" type="text" placeholder={this.props.placeholder} />
+            <input
+                className="input-field"
+                type="text"
+                placeholder={this.props.placeholder}
+                onChange={this.props.onChange}
+                value={this.props.value}
+            />
         );
     }
 }
