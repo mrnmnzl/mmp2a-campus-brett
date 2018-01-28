@@ -1,7 +1,10 @@
 .input-area {
     height: 100px;
-    width: 300px;
-    
+    width: calc(100% - 40px);
+
+    margin: 0 10px;
+    margin-bottom: 15px;
+
     padding: 5px 10px;
     
     border: none;

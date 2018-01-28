@@ -1,7 +1,9 @@
 .input-field {
     height: 40px;
-    width: 300px;
-    
+    width: calc(100% - 40px);
+
+    margin: 0 10px;
+    margin-bottom: 15px;
     padding: 0 10px;
     
     border: none;
