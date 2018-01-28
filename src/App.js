@@ -11,6 +11,7 @@ import Register from './pages/Register';
 import NewPost from './pages/NewPost';
 import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 import Search from './pages/Search/index';
+import Chatroom from './pages/Chatroom/index';
 
 const history = createBrowserHistory();
 
@@ -26,6 +27,7 @@ class App extends Component {
                         <Route path="/messenger" component={Messenger} />
                         <Route path="/new-post" component={NewPost} />
                         <Route path="/search" component={Search} />
+                        <Route path="/chat" component={Chatroom} />
                     </EnsureLoggedInContainer>
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
