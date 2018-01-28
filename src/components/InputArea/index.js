@@ -5,7 +5,7 @@ import './InputArea.css';
 export default class InputArea extends Component {
     render() {
         return (
-            <textarea className="input-area m" type="textarea" placeholder={this.props.placeholder} rows="4" cols="50"/>
+            <textarea className="input-area" type="textarea" placeholder={this.props.placeholder} rows="4" cols="50"/>
         );
     }
 }
