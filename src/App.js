@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Router, Route } from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 import './App.css';
-import Home from './pages/Home';
+import HomeSearch from './pages/HomeSearch';
+import HomeOffer from './pages/HomeOffer'
 import Profile from './pages/Profile';
 import SavedPosts from './pages/SavedPosts';
 import Messenger from './pages/Messenger';
@@ -22,7 +23,8 @@ class App extends Component {
             <Router history={history}>
                 <React.Fragment>
                     <EnsureLoggedInContainer history={history}>
-                        <Route exact path="/" component={Home} />
+                        <Route exact path="/" component={HomeSearch} />
+                        <Route path="/" component={HomeOffer} />
                         <Route path="/profile" component={Profile} />
                         <Route path="/saved-posts" component={SavedPosts} />
                         <Route path="/messenger" component={Messenger} />
