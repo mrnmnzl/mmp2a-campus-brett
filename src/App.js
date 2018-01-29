@@ -15,7 +15,7 @@ import Search from './pages/Search';
 import Chatroom from './pages/Chatroom';
 import EditName from './pages/EditName';
 
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
 
 class App extends Component {
     render() {
