@@ -6,4 +6,11 @@
     height: calc(100% - 130px - 50px);
 
     overflow: auto;
+
+    p {
+        margin: 40px 0;
+        font-family: 'Roboto Medium', sans-serif;
+        font-size: 14px;
+        color: var(--light);
+    }
 }
