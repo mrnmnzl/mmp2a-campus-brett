@@ -1,0 +1,10 @@
+{
+    "to": "cSnwWDKHgU8:APA91bF7O5cRpEG1-AXpcetZkAcIhR_gzmVYCVsdBkcsDfg7pOsWvuZ1hGPunz_fWQ7ac8B35c4c8fP7QGnzqiJO0Ez-UCCVNiWeU_A0j3QGPYBhYMaQ6lEWltytYjSLI0-q8qtx828l"
+    
+    "notification": {
+      "title": "Background Message Title",
+      "body": "Background message body",
+    }
+}
+
+curl --header "Authorization: key=AIzaSyAr-6UZeRjobk1o8RWF-M375dDjrH33E3o" --header Content-Type:"application/json" -d '{"to": "cSnwWDKHgU8:APA91bF7O5cRpEG1-AXpcetZkAcIhR_gzmVYCVsdBkcsDfg7pOsWvuZ1hGPunz_fWQ7ac8B35c4c8fP7QGnzqiJO0Ez-UCCVNiWeU_A0j3QGPYBhYMaQ6lEWltytYjSLI0-q8qtx828l", "notification": {"title": "Background Message Title", "body": "Background message body"}}' https://fcm.googleapis.com/fcm/send
