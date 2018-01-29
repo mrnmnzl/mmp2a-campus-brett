@@ -9,6 +9,7 @@ import CategoryTag from '../../components/CategoryTag';
 import LargeButton from '../../components/LargeButton';
 import './NewPost.css';
 import dataHandling from '../../services/DataHandling';
+import { history } from '../../App';
 
 export default class NewPost extends Component {
     state = {
@@ -46,6 +47,10 @@ export default class NewPost extends Component {
         //setTimeout(() => console.log(this.state.tag), 0);
     }
 
+    handleClose = () => {
+        history.goBack();
+    }
+
     handleSubmit = () => {
         dataHandling.createNewPost(this.state.category, this.state.title, this.state.description, this.state.tag)
     }
@@ -53,7 +58,7 @@ export default class NewPost extends Component {
     render() {
         return (
             <React.Fragment>
-                <HeaderIcon text="NEUEN BEITRAG VERFASSEN" icon="close" />
+                <HeaderIcon text="NEUEN BEITRAG VERFASSEN" icon="close" onClick={this.handleClose}/>
                 <form className="container-new-post">
                     <Headline text="KATEGORIE" />
                     <div className="radio-container" onChange={this.handleCategory}>
