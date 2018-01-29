@@ -4,7 +4,10 @@ import { Component } from 'react';
 import HeaderIcon from '../../components/HeaderIcon';
 import InputField from '../../components/InputField';
 import './Chatroom.css'
+<<<<<<< HEAD
 import authentification from '../../services/Authentification';
+=======
+>>>>>>> 96781840ed45f4c1d908e0372b952e3e974a9a6b
 
 export default class Chatroom extends Component {
     state = {

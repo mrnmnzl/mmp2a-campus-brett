@@ -2,7 +2,6 @@ import React from 'react';
 import { Component } from 'react';
 import classNames from 'classnames';
 import './Post.css';
-import CategoryTag from '../CategoryTag';
 
 export default class Post extends Component {
     render() {
@@ -17,7 +16,7 @@ export default class Post extends Component {
                 <p className="post-title">{this.props.title}</p>
                 <p className="post-description">{this.props.description}</p>
                 <div className="post-tags-container" id="tag-container">
-                    <CategoryTag text={this.props.tag} />
+                    <span className="tag">{this.props.tag}</span>
                 </div>
             </div>
         );
