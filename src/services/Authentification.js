@@ -6,7 +6,7 @@ const config = {
     databaseURL: 'https://campus-brett.firebaseio.com',
     projectId: 'campus-brett',
     storageBucket: 'campus-brett.appspot.com',
-    messagingSenderId: '719539293613'
+    messagingSenderId: '719539293613' 
 };
 
 class Authentication {
@@ -34,3 +34,23 @@ class Authentication {
 }
 
 export default new Authentication();
+
+//MESSAGING
+const messaging = firebase.messaging();
+
+messaging.requestPermission()
+.then(function() {
+    console.log('Have permission!');
+    return messaging.getToken();
+})
+.then(function(token) {
+    console.log(token);
+})
+.catch(function(err) {
+    console.log(err);
+    console.log('Error Occured.');
+})
+
+messaging.onMessage(function(payload){
+    console.log('on Message: ', payload);
+})
