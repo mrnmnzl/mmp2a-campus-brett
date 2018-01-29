@@ -2,7 +2,7 @@
   "name": "campus-brett",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://marionmenzl.github.io/campus-brett",
+  "homepage": "https://campus-brett.firebaseapp.com",
   "dependencies": {
     "classnames": "^2.2.5",
     "firebase": "^4.8.2",
