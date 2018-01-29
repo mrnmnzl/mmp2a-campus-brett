@@ -24,7 +24,7 @@ class App extends Component {
                 <React.Fragment>
                     <EnsureLoggedInContainer history={history}>
                         <Route exact path="/" component={HomeSearch} />
-                        <Route path="/" component={HomeOffer} />
+                        <Route path="/offer" component={HomeOffer} />
                         <Route path="/profile" component={Profile} />
                         <Route path="/saved-posts" component={SavedPosts} />
                         <Route path="/messenger" component={Messenger} />
