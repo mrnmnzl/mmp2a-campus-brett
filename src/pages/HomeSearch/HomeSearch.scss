@@ -5,6 +5,10 @@
     width: 100%;
     height: calc(100% - 130px - 50px);
 
+    & > * {
+        text-decoration: none;
+    }
+
     overflow: auto;
 
     p {
