@@ -27,7 +27,8 @@ export default class Register extends Component {
     };
 
     handleSubmit = () => {
-        authentification.register(this.state.email, this.state.password);
+        authentification.register(this.state.email, this.state.password)
+        .then(() => this.props.history.push('/edit-name'));
     };
 
     render() {
