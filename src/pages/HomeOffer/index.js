@@ -6,7 +6,7 @@ import Post from '../../components/Post';
 import dataHandling from '../../services/DataHandling';
 import './Home.css';
 
-export default class Home extends PureComponent {
+export default class HomeOffer extends PureComponent {
     state = {
         posts: []
     };
@@ -16,7 +16,7 @@ export default class Home extends PureComponent {
 
     handlePostsDataChange = data => {
         const postList = data.val();
-        if (postList === null) {
+        if (postList == null) {
             const container = document.getElementById('post-container');
             container.insertAdjacentHTML( 'beforeend', "<p> Keine Posts unter GESUCHT gefunden! </p>");
         } else {
@@ -26,12 +26,15 @@ export default class Home extends PureComponent {
             for (let i = 0; i < postKeys.length; i++) {
                 const k = postKeys[i];
                 const name = 'Max Mustermann';
-                const time = postList[k].time;
+                let time = postList[k].time;
+                if(postList[k].time != null) {
+                    time = time.substring(0, time.length - 3);
+                }
                 const title = postList[k].title;
                 const description = postList[k].description;
                 const tag = postList[k].tag;
 
-                if (postList[k].category === 'search')
+                if (postList[k].category === 'offer') {
                     posts.push({
                         id: k,
                         name: name,
@@ -40,6 +43,12 @@ export default class Home extends PureComponent {
                         description: description,
                         tag: tag
                     });
+                }
+            }
+
+            if (posts === []) {
+                const container = document.getElementById('post-container');
+                container.insertAdjacentHTML( 'beforeend', "<p> Keine Posts unter GESUCHT gefunden! </p>");
             }
 
             this.setState({
@@ -53,12 +62,12 @@ export default class Home extends PureComponent {
         return (
             <React.Fragment>
                 <HeaderLogo theme="light" />
-                <CategoryBar />
+                <CategoryBar underline="offer"/>
                 <div className="posts-container" id="post-container">
                     {this.state.posts.map(post => {
                         return (
                             <Post
-                                theme="search"
+                                theme="offer"
                                 key={post.id}
                                 name={post.name}
                                 time={post.time}
