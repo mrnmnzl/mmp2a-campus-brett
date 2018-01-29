@@ -5,6 +5,7 @@ import CategoryBar from '../../components/CategoryBar';
 import Post from '../../components/Post';
 import dataHandling from '../../services/DataHandling';
 import './HomeOffer.css';
+import { Link } from 'react-router-dom';
 
 export default class HomeOffer extends PureComponent {
     state = {
@@ -18,7 +19,7 @@ export default class HomeOffer extends PureComponent {
         const postList = data.val();
         if (postList == null) {
             const container = document.getElementById('post-container');
-            container.insertAdjacentHTML( 'beforeend', "<p> Keine Posts unter GESUCHT gefunden! </p>");
+            container.insertAdjacentHTML('beforeend', '<p> Keine Posts unter GESUCHT gefunden! </p>');
         } else {
             const postKeys = Object.keys(postList);
 
@@ -27,7 +28,7 @@ export default class HomeOffer extends PureComponent {
                 const k = postKeys[i];
                 const name = 'Max Mustermann';
                 let time = postList[k].time;
-                if(postList[k].time != null) {
+                if (postList[k].time != null) {
                     time = time.substring(0, time.length - 3);
                 }
                 const title = postList[k].title;
@@ -48,7 +49,7 @@ export default class HomeOffer extends PureComponent {
 
             if (posts === []) {
                 const container = document.getElementById('post-container');
-                container.insertAdjacentHTML( 'beforeend', "<p> Keine Posts unter GESUCHT gefunden! </p>");
+                container.insertAdjacentHTML('beforeend', '<p> Keine Posts unter GESUCHT gefunden! </p>');
             }
 
             this.setState({
@@ -61,19 +62,22 @@ export default class HomeOffer extends PureComponent {
         return (
             <React.Fragment>
                 <HeaderLogo theme="light" />
-                <CategoryBar underline="offer"/>
+                <CategoryBar underline="offer" />
                 <div className="posts-container" id="post-container">
                     {this.state.posts.map(post => {
+                        const path = '/post/' + post.id;
                         return (
-                            <Post
-                                theme="offer"
-                                key={post.id}
-                                name={post.name}
-                                time={post.time}
-                                title={post.title}
-                                description={post.description}
-                                tag={post.tag}
-                            />
+                            <Link to={path}>
+                                <Post
+                                    theme="offer"
+                                    key={post.id}
+                                    name={post.name}
+                                    time={post.time}
+                                    title={post.title}
+                                    description={post.description}
+                                    tag={post.tag}
+                                />
+                            </Link>
                         );
                     })}
                 </div>

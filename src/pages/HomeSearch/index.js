@@ -5,6 +5,7 @@ import CategoryBar from '../../components/CategoryBar';
 import Post from '../../components/Post';
 import dataHandling from '../../services/DataHandling';
 import './HomeSearch.css';
+import { Link } from 'react-router-dom';
 
 export default class HomeSearch extends PureComponent {
     state = {
@@ -15,10 +16,12 @@ export default class HomeSearch extends PureComponent {
     }
 
     handlePostsDataChange = data => {
+        //TODO: Improve data query
+
         const postList = data.val();
         if (postList === null) {
             const container = document.getElementById('post-container');
-            container.insertAdjacentHTML( 'beforeend', "<p> Keine Posts unter GESUCHT gefunden! </p>");
+            container.insertAdjacentHTML('beforeend', '<p> Keine Posts unter GESUCHT gefunden! </p>');
         } else {
             const postKeys = Object.keys(postList);
 
@@ -27,7 +30,7 @@ export default class HomeSearch extends PureComponent {
                 const k = postKeys[i];
                 const name = 'Max Mustermann';
                 let time = postList[k].time;
-                if(postList[k].time != null) {
+                if (postList[k].time != null) {
                     time = time.substring(0, time.length - 3);
                 }
                 const title = postList[k].title;
@@ -58,16 +61,19 @@ export default class HomeSearch extends PureComponent {
                 <CategoryBar underline="search" />
                 <div className="posts-container" id="post-container">
                     {this.state.posts.map(post => {
+                        const path = '/post/' + post.id;
                         return (
-                            <Post
-                                theme="search"
-                                key={post.id}
-                                name={post.name}
-                                time={post.time}
-                                title={post.title}
-                                description={post.description}
-                                tag={post.tag}
-                            />
+                            <Link to={path}>
+                                <Post
+                                    theme="search"
+                                    key={post.id}
+                                    name={post.name}
+                                    time={post.time}
+                                    title={post.title}
+                                    description={post.description}
+                                    tag={post.tag}
+                                />
+                            </Link>
                         );
                     })}
                 </div>
