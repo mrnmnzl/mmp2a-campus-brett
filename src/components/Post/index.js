@@ -2,7 +2,6 @@ import React from 'react';
 import { Component } from 'react';
 import classNames from 'classnames';
 import './Post.css';
-import CategoryTag from '../CategoryTag';
 
 export default class Post extends Component {
     render() {
