@@ -48,7 +48,6 @@ export default class HomeSearch extends PureComponent {
             this.setState({
                 posts: posts
             });
-            console.log(this.state.posts);
         }
     };
 
