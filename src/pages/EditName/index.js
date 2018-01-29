@@ -3,7 +3,6 @@ import { Component } from 'react';
 import HeaderText from '../../components/HeaderText';
 import InputLine from '../../components/InputLine';
 import LargeButton from '../../components/LargeButton';
-import './EditName.css';
 import authentification from '../../services/Authentification';
 
 
