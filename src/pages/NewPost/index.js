@@ -17,6 +17,7 @@ export default class NewPost extends Component {
         description: '',
         tag: ''
     }
+    
     handleCategory = event => {
         this.setState({
             category: event.target.value
