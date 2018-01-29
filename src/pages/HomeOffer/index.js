@@ -4,7 +4,7 @@ import HeaderLogo from '../../components/HeaderLogo';
 import CategoryBar from '../../components/CategoryBar';
 import Post from '../../components/Post';
 import dataHandling from '../../services/DataHandling';
-import './Home.css';
+import './HomeOffer.css';
 
 export default class HomeOffer extends PureComponent {
     state = {
