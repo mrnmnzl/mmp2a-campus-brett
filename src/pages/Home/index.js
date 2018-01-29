@@ -1,30 +1,73 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Navigation from '../../components/Navigation';
 import HeaderLogo from '../../components/HeaderLogo';
 import CategoryBar from '../../components/CategoryBar';
 import Post from '../../components/Post';
+import dataHandling from '../../services/DataHandling';
 import './Home.css';
 
-const tags1 = [
-    "haushaltsgeräte"
-]
+export default class Home extends PureComponent {
+    state = {
+        posts: []
+    };
+    componentWillMount() {
+        dataHandling.addDataChangeListener('posts', this.handlePostsDataChange);
+    }
 
-const tags2 = [
-    "suche", "schlüssel", "hilfe"
-]
+    handlePostsDataChange = data => {
+        const postList = data.val();
+        if (postList === null) {
+            const container = document.getElementById('post-container');
+            container.insertAdjacentHTML( 'beforeend', "<p> Keine Posts unter GESUCHT gefunden! </p>");
+        } else {
+            const postKeys = Object.keys(postList);
 
-export default class Home extends Component {
+            let posts = [];
+            for (let i = 0; i < postKeys.length; i++) {
+                const k = postKeys[i];
+                const name = 'Max Mustermann';
+                const time = postList[k].time;
+                const title = postList[k].title;
+                const description = postList[k].description;
+                const tag = postList[k].tag;
+
+                if (postList[k].category === 'search')
+                    posts.push({
+                        id: k,
+                        name: name,
+                        time: time,
+                        title: title,
+                        description: description,
+                        tag: tag
+                    });
+            }
+
+            this.setState({
+                posts: posts
+            });
+            console.log(this.state.posts);
+        }
+    };
+
     render() {
         return (
             <React.Fragment>
-                <HeaderLogo theme="light"/>
+                <HeaderLogo theme="light" />
                 <CategoryBar />
-                <div className="posts-container">
-                    <Post name="Marion Menzl" time="23.11.17, 15:30" title="Neue Mikrowelle abzugeben!" description="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et" tags={tags1} image="" color="find"/>
-                    <Post name="Marion Menzl" time="23.11.17, 15:30" title="Neue Mikrowelle abzugeben!" description="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et" tags={tags2} image="" color="find"/>
-                    <Post name="Marion Menzl" time="23.11.17, 15:30" title="Neue Mikrowelle abzugeben!" description="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et" tags={tags1} image="" color="find"/>
-                    <Post name="Marion Menzl" time="23.11.17, 15:30" title="Neue Mikrowelle abzugeben!" description="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et" tags={tags1} image="" color="find"/>
+                <div className="posts-container" id="post-container">
+                    {this.state.posts.map(post => {
+                        return (
+                            <Post
+                                theme="search"
+                                key={post.id}
+                                name={post.name}
+                                time={post.time}
+                                title={post.title}
+                                description={post.description}
+                                tag={post.tag}
+                            />
+                        );
+                    })}
                 </div>
                 <Navigation />
             </React.Fragment>
