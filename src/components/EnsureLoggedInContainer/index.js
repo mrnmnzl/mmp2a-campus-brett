@@ -9,7 +9,6 @@ export default class EnsureLoggedInContainer extends Component {
     };
 
     componentDidMount() {
-        console.log('hello');
         firebase.auth().onAuthStateChanged(firebaseUser => {
             if (firebaseUser) {
                 this.setState({ isLoggedIn: true });
