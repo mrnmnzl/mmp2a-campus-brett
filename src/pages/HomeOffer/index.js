@@ -54,7 +54,6 @@ export default class HomeOffer extends PureComponent {
             this.setState({
                 posts: posts
             });
-            console.log(this.state.posts);
         }
     };
 
