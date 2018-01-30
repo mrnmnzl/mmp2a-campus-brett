@@ -6,6 +6,7 @@ import HeaderIcon from '../../components/HeaderIcon';
 import LargeButton from '../../components/LargeButton';
 import SmallButton from '../../components/SmallButton';
 import { history } from '../../App';
+import { Link } from 'react-router-dom';
 import './PostDetail.css';
 
 export default class PostDetail extends Component {
@@ -41,6 +42,7 @@ export default class PostDetail extends Component {
     };
 
     render() {
+
         return (
             <React.Fragment>
                 <HeaderIcon icon="back" text="DETAILANSICHT" onClick={this.handleGoBack} />
@@ -50,7 +52,9 @@ export default class PostDetail extends Component {
                     <p className="detail-post-description">{this.state.description}</p>
                     <span className="tag">{this.state.tag}</span>
                     <div className="detail-post-button-container">
-                        <LargeButton text="EINE NACHRICHT SCHREIBEN" theme="light" />
+                        <Link to='/chat'>
+                            <LargeButton text="EINE NACHRICHT SCHREIBEN" theme="light" />
+                        </Link>
                         <SmallButton text="Beitrag speichern" />
                     </div>
                 </div>
