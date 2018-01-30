@@ -19,7 +19,7 @@
         margin: 0 10px;
 
         span{
-            background-color: white;
+            background-color: var(--light);
             border: none;
             border-radius: 2px;
             margin-bottom: 0px;
@@ -40,7 +40,7 @@
         }
 
         .send-icon{
-            color: white;
+            color: var(--light);
             width: 25px;
             height: 25px;
             bottom: 0;

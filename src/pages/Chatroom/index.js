@@ -88,6 +88,10 @@ export default class Chatroom extends Component {
         this.setState({
             messages: list
         })
+
+        this.setState({
+            message: ''
+        })
     }
 
     handleBack = event => {
