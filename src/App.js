@@ -15,6 +15,7 @@ import Search from './pages/Search';
 import Chatroom from './pages/Chatroom';
 import EditName from './pages/EditName';
 import PostDetail from './pages/PostDetail';
+import SearchResult from './pages/SearchResult/index';
 
 export const history = createBrowserHistory();
 
@@ -30,10 +31,11 @@ class App extends Component {
                         <Route path="/saved-posts" component={SavedPosts} />
                         <Route path="/messenger" component={Messenger} />
                         <Route path="/new-post" component={NewPost} />
-                        <Route path="/search" component={Search} />
+                        <Route exact path="/search" component={Search} />
                         <Route path="/chat" component={Chatroom} />
                         <Route path="/edit-name" component={EditName} />
                         <Route path="/post/:id" component={PostDetail} />
+                        <Route path="/search/:category/:tag" component={SearchResult} />
                     </EnsureLoggedInContainer>
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
