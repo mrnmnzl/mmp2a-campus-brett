@@ -2,11 +2,11 @@ import React from 'react';
 import { Component } from 'react';
 import Navigation from '../../components/Navigation';
 import HeaderIcon from '../../components/HeaderIcon';
-
+import { history } from '../../App';
 
 export default class Search extends Component {
-    handleBack = event => {
-        this.props.history.push('/');
+    handleBack = () => {
+        history.push('/');
     }
 
     render() {
