@@ -33,8 +33,6 @@ export default class PostDetail extends Component {
                     tag: snapshot.val().tag,
                     description: snapshot.val().description
                 });
-
-                console.log(this.state.time);
             });
     }
 
