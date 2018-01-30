@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+import * as firebase from 'firebase';
 import HeaderIcon from '../../components/HeaderIcon';
 import RadioCategory from '../../components/RadioCategory';
 import Headline from '../../components/Headline';
@@ -10,10 +11,12 @@ import LargeButton from '../../components/LargeButton';
 import './NewPost.css';
 import dataHandling from '../../services/DataHandling';
 import { history } from '../../App';
+import { userId } from '../../components/EnsureLoggedInContainer';
 
 export default class NewPost extends Component {
     state = {
         category: 'search',
+        name: '',
         title: '',
         description: '',
         tag: ''
@@ -44,15 +47,27 @@ export default class NewPost extends Component {
         this.setState({
             tag: value
         });
-        //setTimeout(() => console.log(this.state.tag), 0);
     }
 
     handleClose = () => {
         history.goBack();
     }
 
+    getUserName = () => {
+        const id = userId;
+        firebase
+            .database()
+            .ref('/users/' + id)
+            .once('value')
+            .then(snapshot => {
+                this.setState({
+                    name: snapshot.val()
+                });
+            });   
+    }
+
     handleSubmit = () => {
-        dataHandling.createNewPost(this.state.category, this.state.title, this.state.description, this.state.tag)
+        dataHandling.createNewPost(this.state.name.username, this.state.category, this.state.title, this.state.description, this.state.tag)
     }
 
     render() {
