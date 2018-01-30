@@ -1,0 +1,14 @@
+.chat-text {
+    background-color: var(--light);
+    margin-top: 5px;
+    padding: 10px;
+    padding-left: 80px;
+
+    p {
+        margin: 10px;
+        font-family: 'Roboto Thin', sans-serif;
+        font-size: 25px;
+        font-weight: bold;
+        color: var(--dark);
+    }
+}

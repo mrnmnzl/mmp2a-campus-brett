@@ -9,6 +9,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: bottom;
+    align-self: flex-end;
 
     .chat-messages{
         display: flex;
@@ -17,9 +18,10 @@
         align-items: flex-end;
         list-style: none;
         margin: 0 10px;
+        color: var(--dark);
 
         span{
-            background-color: white;
+            background-color: var(--light);
             border: none;
             border-radius: 2px;
             margin-bottom: 0px;
@@ -40,7 +42,7 @@
         }
 
         .send-icon{
-            color: white;
+            color: var(--light);
             width: 25px;
             height: 25px;
             bottom: 0;

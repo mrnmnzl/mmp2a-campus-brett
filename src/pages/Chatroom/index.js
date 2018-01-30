@@ -5,6 +5,7 @@ import HeaderIcon from '../../components/HeaderIcon';
 import InputField from '../../components/InputField';
 import './Chatroom.css';
 import { userId } from '../../components/EnsureLoggedInContainer';
+import dataHandling from '../../services/DataHandling';
 
 
 export default class Chatroom extends Component {
@@ -13,6 +14,46 @@ export default class Chatroom extends Component {
         messages: [],
         userName: ''
     }
+
+    // componentWillMount() {
+    //     dataHandling.addDataChangeListener('messages', this.handleMessagesDataChange);
+    // }
+
+    // handleMessagesDataChange = data => {
+    
+    //     const messageList = data.val();
+    //     if (messageList === null) {
+    //         const container = document.getElementById('post-container');
+    //         container.insertAdjacentHTML('beforeend', '<p> Schreibe eine Nachricht </p>');
+    //     } else {
+    //         const messageKeys = Object.keys(messageList);
+
+    //         let messages = [];
+    //         for (let i = 0; i < messageKeys.length; i++) {
+    //             const k = messageKeys[i];
+    //             //userID -> name rausfiltern
+    //             const name = 'Max Mustermann';
+    //             let time = messageList[k].time;
+    //             if (messageList[k].time != null) {
+    //                 time = time.substring(0, time.length - 3);
+    //             }
+    //             const text = messageList[k].text;
+    //             const userID= messageList[k].userID;
+
+    //             if (messageList[k].id === 'richtige ID')
+    //                 messages.push({
+    //                     id: k,
+    //                     text: text,
+    //                     time: time,
+    //                     userID: userID
+    //                 });
+    //         }
+
+    //         this.setState({
+    //             messages: messages
+    //         });
+    //     }
+    // };
 
     componentWillMount() {
         const id = userId;
@@ -87,6 +128,10 @@ export default class Chatroom extends Component {
         list.push(nextMessage);
         this.setState({
             messages: list
+        })
+
+        this.setState({
+            message: ''
         })
     }
 
