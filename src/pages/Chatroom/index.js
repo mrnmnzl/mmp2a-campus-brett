@@ -55,22 +55,31 @@ export default class Chatroom extends Component {
     }
 
     handleSubmit = (event) => {
-       console.log('submit Message: ' + this.state.message)
-    
+        console.log('submit Message: ' + this.state.message)
+        const chatID = 0;
        //preparing next message
         const nextMessage = {
             id: this.state.message.length,
             text: this.state.message,
             time: new Date().toLocaleString('de-DE', { hour12: false}),
-            userID: userId
+            userID: chatID
         }
         console.log('submit MessageID: ' + nextMessage.id)
-        console.log('From user: ' + nextMessage.userID)
-        console.log('To user: ' + nextMessage.userID)
+        console.log('ChatID: ' + nextMessage.userID)
         console.log('time: ' + nextMessage.time)
+
+        //new Databasetable for chats between users
+        const chat = {
+            id: chatID,
+            fromUser: userId
+            //toUser:
+        }
+        console.log('Chatnumber: ' + chat.id)
+        console.log('From user: ' + chat.fromUser)
     
         //connect to firebase
         firebase.database().ref('messages/' + nextMessage.id).set(nextMessage);
+        firebase.database().ref('chats/' + chat.id).set(chat);
     
     
         //list of messages
