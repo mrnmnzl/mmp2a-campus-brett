@@ -4,13 +4,12 @@ import { userId } from '../components/EnsureLoggedInContainer';
 import { history } from '../App';
 
 const database = firebase.database();
-const postsRef = database.ref('posts/');
 
 class DataHandling {
     createNewPost(name, category, title, description, tag) {
+        const postsRef = database.ref('posts/');
         const newPost = postsRef.push();
         const date = new Date().toLocaleString('de-DE', { hour12: false });
-
         const path = category === 'search' ? '/' : '/offer';
 
         newPost
