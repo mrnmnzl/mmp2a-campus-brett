@@ -63,7 +63,8 @@ export default class HomeSearch extends PureComponent {
                     {this.state.posts.map(post => {
                         const path = '/post/' + post.id;
                         return (
-                            <Link to={path}>
+                            //React braucht bei Iteratoren eindeutige Keys deswegen key=
+                            <Link to={path} key={post.id}>
                                 <Post
                                     theme="search"
                                     key={post.id}

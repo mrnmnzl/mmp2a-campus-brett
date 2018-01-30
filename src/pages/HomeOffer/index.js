@@ -67,7 +67,7 @@ export default class HomeOffer extends PureComponent {
                     {this.state.posts.map(post => {
                         const path = '/post/' + post.id;
                         return (
-                            <Link to={path}>
+                            <Link to={path} key={post.id}>
                                 <Post
                                     theme="offer"
                                     key={post.id}
