@@ -7,7 +7,7 @@ const database = firebase.database();
 const postsRef = database.ref('posts/');
 
 class DataHandling {
-    createNewPost(category, title, description, tag) {
+    createNewPost(name, category, title, description, tag) {
         const newPost = postsRef.push();
         const date = new Date().toLocaleString('de-DE', { hour12: false});
 
@@ -15,6 +15,7 @@ class DataHandling {
 
         newPost.set({
             user: userId,
+            name: name,
             category: category,
             title: title,
             description: description,
@@ -31,6 +32,12 @@ class DataHandling {
     errData(error) {
         console.error(error);
     }
+
+    addNameToUser(userId, name) {
+        firebase.database().ref('users/' + userId).set({
+          username: name
+        });
+      }
 }
 
 export default new DataHandling();
