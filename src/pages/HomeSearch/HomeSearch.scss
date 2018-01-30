@@ -10,7 +10,11 @@
     }
 
     overflow: auto;
+}
 
+#post-warning {
+    display: flex;
+    justify-content: center;
     p {
         margin: 40px 0;
         font-family: 'Roboto Medium', sans-serif;
