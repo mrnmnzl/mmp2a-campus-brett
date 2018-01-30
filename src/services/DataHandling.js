@@ -9,19 +9,21 @@ const postsRef = database.ref('posts/');
 class DataHandling {
     createNewPost(name, category, title, description, tag) {
         const newPost = postsRef.push();
-        const date = new Date().toLocaleString('de-DE', { hour12: false});
+        const date = new Date().toLocaleString('de-DE', { hour12: false });
 
-        const path = category === "search" ? "/" : "/offer";
+        const path = category === 'search' ? '/' : '/offer';
 
-        newPost.set({
-            user: userId,
-            name: name,
-            category: category,
-            title: title,
-            description: description,
-            tag: tag,
-            time: date
-        }).then(history.push(path));
+        newPost
+            .set({
+                user: userId,
+                name: name,
+                category: category,
+                title: title,
+                description: description,
+                tag: tag,
+                time: date
+            })
+            .then(history.push(path));
     }
 
     addDataChangeListener(locationName, listener) {
@@ -34,10 +36,13 @@ class DataHandling {
     }
 
     addNameToUser(userId, name) {
-        firebase.database().ref('users/' + userId).set({
-          username: name
-        });
-      }
+        firebase
+            .database()
+            .ref('users/' + userId)
+            .set({
+                username: name
+            });
+    }
 }
 
 export default new DataHandling();
