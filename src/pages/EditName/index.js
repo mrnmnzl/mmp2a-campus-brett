@@ -3,8 +3,8 @@ import { Component } from 'react';
 import HeaderText from '../../components/HeaderText';
 import InputLine from '../../components/InputLine';
 import LargeButton from '../../components/LargeButton';
-import authentification from '../../services/Authentification';
-
+import DataHandling from '../../services/DataHandling';
+import { userId } from '../../components/EnsureLoggedInContainer';
 
 export default class EditName extends Component {
     state = {
@@ -18,8 +18,8 @@ export default class EditName extends Component {
     };
 
     handleSubmit = event => {
-        authentification.login(this.state.username)
-        .then(() => this.props.history.push('/'));
+        DataHandling.addNameToUser(userId, this.state.username);
+        this.props.history.push('/');
     };
 
     render() {
@@ -35,7 +35,13 @@ export default class EditName extends Component {
                         id="username"
                         onChange={this.handleNameChange}
                     />
-                    <LargeButton className="submit-button" theme="light" text="SPEICHERN" id="save-button" onClick={this.handleSubmit} />
+                    <LargeButton
+                        className="submit-button"
+                        theme="light"
+                        text="SPEICHERN"
+                        id="save-button"
+                        onClick={this.handleSubmit}
+                    />
                 </div>
             </React.Fragment>
         );
