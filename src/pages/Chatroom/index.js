@@ -8,15 +8,26 @@ import { userId } from '../../components/EnsureLoggedInContainer';
 
 
 export default class Chatroom extends Component {
-    constructor(props, context){
-        super(props, context)
-        this.handleMessage = this.handleMessage.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-        //this.getUserName = this.getUserName.bind(this)
-        this.state = {
-            message: '',
-            messages: []
-        }
+    state = {
+        message: '',
+        messages: [],
+        userName: ''
+    }
+
+    componentWillMount() {
+        const id = userId;
+        firebase
+            .database()
+            .ref('/users/' + id)
+            .once('value')
+            .then(snapshot => {
+                this.setState({
+                    userName: snapshot.val()
+                });
+            });  
+
+            setTimeout(() => console.log(this.state.userName), 0);
+            
     }
 
     //live - cicle - method -> System calls this function is the conection to firebase
@@ -32,33 +43,42 @@ export default class Chatroom extends Component {
         //             messages: currentMessages
         //         })
         //     }
-        // })
+        // })   
     }
-    
-    
-
    
-    handleMessage(event) {
+    handleMessage = (event) => {
         console.log('update Message: ' + event.target.value);
         this.setState({
             message: event.target.value
         })
     }
 
-    handleSubmit(event){
-       console.log('submit Message: ' + this.state.message)
-    
+    handleSubmit = (event) => {
+        console.log('submit Message: ' + this.state.message)
+        const chatID = 0;
        //preparing next message
         const nextMessage = {
             id: this.state.message.length,
             text: this.state.message,
-            userID: userId
+            time: new Date().toLocaleString('de-DE', { hour12: false}),
+            userID: chatID
         }
         console.log('submit MessageID: ' + nextMessage.id)
-        console.log('submit userId: ' + nextMessage.userID)
+        console.log('ChatID: ' + nextMessage.userID)
+        console.log('time: ' + nextMessage.time)
+
+        //new Databasetable for chats between users
+        const chat = {
+            id: chatID,
+            fromUser: userId
+            //toUser:
+        }
+        console.log('Chatnumber: ' + chat.id)
+        console.log('From user: ' + chat.fromUser)
     
         //connect to firebase
         firebase.database().ref('messages/' + nextMessage.id).set(nextMessage);
+        firebase.database().ref('chats/' + chat.id).set(chat);
     
     
         //list of messages
@@ -74,20 +94,6 @@ export default class Chatroom extends Component {
         this.props.history.push('/messenger')
     }
 
-    // getUserName = () => {
-    //     const id = userId;
-    //     firebase
-    //         .database()
-    //         .ref('/users/' + id)
-    //         .once('value')
-    //         .then(snapshot => {
-    //             this.setState({
-    //                 name: snapshot.val().username
-    //             });
-    //         });  
-    //     //setTimeout(() => console.log(this.state.name), 0);
-    // }
-
     render() {
         const currentMessage = this.state.messages.map((message, i) => {
             return (
@@ -95,14 +101,12 @@ export default class Chatroom extends Component {
             )
         })
 
-        //const userName = getUserName();
-
         return (
             <React.Fragment>
                 <HeaderIcon text="CHATROOM" icon="back" onClick={this.handleBack}/>
                 <div className="container-chat">
                     <ol className="chat-messages">
-                        {/* <span>{userName}</span> */}
+                        {/* <span>{this.state.userName.username}</span> */}
                         <span>{currentMessage}</span>
                     </ol>
                     <div className="chat-bar">
