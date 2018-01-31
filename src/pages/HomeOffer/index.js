@@ -65,7 +65,7 @@ export default class HomeOffer extends PureComponent {
                             //React braucht bei Iteratoren eindeutige Keys deswegen key=
                             <Link to={path} key={post.id}>
                                 <Post
-                                    theme="search"
+                                    theme="offer"
                                     key={post.id}
                                     name={post.name}
                                     time={post.time}
