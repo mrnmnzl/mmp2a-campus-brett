@@ -15,7 +15,7 @@ export default class Search extends Component {
         category: ''
     } 
 
-    handleBack = () => {
+    handleBack = event => {
         history.push('/');
     }
 

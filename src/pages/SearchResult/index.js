@@ -16,13 +16,8 @@ export default class SearchResult extends Component {
         posts: []
     }
 
-<<<<<<< HEAD
     handleBack = event => {
         history.push('/search');
-=======
-    handleBack = () => {
-        history.goBack();
->>>>>>> 48452069bbaedda85c458055962d14457c9c6622
     }
 
     componentWillMount() {
@@ -31,13 +26,13 @@ export default class SearchResult extends Component {
 
     handlePostsDataChange = data => {
         const postList = data.val();
+        let posts = [];
         if (postList === null) {
             const container = document.getElementById('warnings');
             container.insertAdjacentHTML('beforeend', '<p> Es gibt noch keine Beiträge </p>');
         } else {
             const postKeys = Object.keys(postList);
 
-            let posts = [];
             for (let i = 0; i < postKeys.length; i++) {
                 const k = postKeys[i];
                 const name = 'Max Mustermann';
@@ -49,14 +44,7 @@ export default class SearchResult extends Component {
                 const description = postList[k].description;
                 const tag = postList[k].tag;
 
-<<<<<<< HEAD
-                console.log(this.state.category)
-                console.log(this.state.tag)
-
-                if (postList[k].category === this.state.category && postList[k].tag === this.state.tag){
-=======
                 if (postList[k].category === this.state.category && postList[k].tag === this.state.tag)
->>>>>>> 48452069bbaedda85c458055962d14457c9c6622
                     posts.push({
                         id: k,
                         name: name,
@@ -73,15 +61,12 @@ export default class SearchResult extends Component {
             });
 
 
-<<<<<<< HEAD
             if(posts.length === 0){
                 const container = document.getElementById('warnings');
                 container.insertAdjacentHTML('beforeend', '<p> Keine Posts mit diesen Eigenschaften gefunden! </p>');    
             }
-=======
->>>>>>> 48452069bbaedda85c458055962d14457c9c6622
         }
-    };
+    
 
     handleSubmit = event => {
         history.push('/search');
@@ -97,11 +82,10 @@ export default class SearchResult extends Component {
                 <HeaderIcon text="SUCHERGEBNISSE" icon="back" onclick={this.handleBack}/>
                 <div className="posts-container-search-result" id="post-container">
                     <div id="warnings"></div>
-<<<<<<< HEAD
                     {this.state.posts.map(post => {
                         const path = '/post/' + post.id;
                         return (
-                            <Link to={path}>
+                            <Link to={path} key={post.time}>
                                 <Post
                                     theme={this.category}
                                     key={post.id}
@@ -131,24 +115,6 @@ export default class SearchResult extends Component {
                             id="close-button"
                             onClick={this.handleHome}
                         />
-=======
-                        {this.state.posts.map(post => {
-                            const path = '/post/' + post.id;
-                            return (
-                                <Link to={path} key={post.time}>
-                                    <Post
-                                        theme={this.state.category}
-                                        key={post.id}
-                                        name={post.name}
-                                        time={post.time}
-                                        title={post.title}
-                                        description={post.description}
-                                        tag={post.tag}
-                                    />
-                                </Link>
-                            );
-                        })}
->>>>>>> 48452069bbaedda85c458055962d14457c9c6622
                     </div>
                 </div>
                 <Navigation />
