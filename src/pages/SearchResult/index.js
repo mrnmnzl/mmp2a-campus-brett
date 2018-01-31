@@ -16,8 +16,13 @@ export default class SearchResult extends Component {
         posts: []
     }
 
+<<<<<<< HEAD
     handleBack = event => {
         history.push('/search');
+=======
+    handleBack = () => {
+        history.goBack();
+>>>>>>> 48452069bbaedda85c458055962d14457c9c6622
     }
 
     componentWillMount() {
@@ -44,10 +49,14 @@ export default class SearchResult extends Component {
                 const description = postList[k].description;
                 const tag = postList[k].tag;
 
+<<<<<<< HEAD
                 console.log(this.state.category)
                 console.log(this.state.tag)
 
                 if (postList[k].category === this.state.category && postList[k].tag === this.state.tag){
+=======
+                if (postList[k].category === this.state.category && postList[k].tag === this.state.tag)
+>>>>>>> 48452069bbaedda85c458055962d14457c9c6622
                     posts.push({
                         id: k,
                         name: name,
@@ -64,10 +73,13 @@ export default class SearchResult extends Component {
             });
 
 
+<<<<<<< HEAD
             if(posts.length === 0){
                 const container = document.getElementById('warnings');
                 container.insertAdjacentHTML('beforeend', '<p> Keine Posts mit diesen Eigenschaften gefunden! </p>');    
             }
+=======
+>>>>>>> 48452069bbaedda85c458055962d14457c9c6622
         }
     };
 
@@ -83,8 +95,9 @@ export default class SearchResult extends Component {
         return (
             <React.Fragment>
                 <HeaderIcon text="SUCHERGEBNISSE" icon="back" onclick={this.handleBack}/>
-                <div className="posts-container" id="post-container">
+                <div className="posts-container-search-result" id="post-container">
                     <div id="warnings"></div>
+<<<<<<< HEAD
                     {this.state.posts.map(post => {
                         const path = '/post/' + post.id;
                         return (
@@ -118,6 +131,24 @@ export default class SearchResult extends Component {
                             id="close-button"
                             onClick={this.handleHome}
                         />
+=======
+                        {this.state.posts.map(post => {
+                            const path = '/post/' + post.id;
+                            return (
+                                <Link to={path} key={post.time}>
+                                    <Post
+                                        theme={this.state.category}
+                                        key={post.id}
+                                        name={post.name}
+                                        time={post.time}
+                                        title={post.title}
+                                        description={post.description}
+                                        tag={post.tag}
+                                    />
+                                </Link>
+                            );
+                        })}
+>>>>>>> 48452069bbaedda85c458055962d14457c9c6622
                     </div>
                 </div>
                 <Navigation />

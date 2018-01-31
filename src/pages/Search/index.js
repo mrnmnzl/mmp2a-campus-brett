@@ -7,8 +7,6 @@ import RadioCategory from '../../components/RadioCategory';
 import CategoryTag from '../../components/CategoryTag';
 import LargeButton from '../../components/LargeButton';
 import { history } from '../../App';
-import { userId } from '../../components/EnsureLoggedInContainer';
-import { Link } from 'react-router-dom';
 import './Search.css';
 
 export default class Search extends Component {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Component } from 'react';
-import classNames from 'classnames';
 import './Chats.css';
 
 export default class Chats extends Component {

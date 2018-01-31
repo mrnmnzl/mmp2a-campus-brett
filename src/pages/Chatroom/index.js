@@ -5,8 +5,6 @@ import HeaderIcon from '../../components/HeaderIcon';
 import InputField from '../../components/InputField';
 import './Chatroom.css';
 import { userId } from '../../components/EnsureLoggedInContainer';
-import dataHandling from '../../services/DataHandling';
-
 
 export default class Chatroom extends Component {
     state = {
