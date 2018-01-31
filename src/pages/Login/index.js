@@ -7,6 +7,8 @@ import LargeButton from '../../components/LargeButton';
 import LogoLight from '../../images/logo-light.png';
 import './Login.css';
 import authentification from '../../services/Authentification';
+import validator from 'validator';
+import isEmail from 'validator/lib/isEmail';
 
 export default class Login extends Component {
     state = {
@@ -27,14 +29,26 @@ export default class Login extends Component {
     };
 
     handleSubmit = () => {
-        authentification.login(this.state.email, this.state.password)
-            .then(() => this.props.history.push('/'));
+        if(!validator.isEmail(this.state.email)){
+            const container = document.getElementById('validation');
+            container.insertAdjacentHTML('beforeend', '<p> Dies ist keine Email </p>');    
+        }
+        if(!validator.isAlphanumeric(this.state.password)){
+            const container = document.getElementById('validation');
+            container.insertAdjacentHTML('beforeend', '<p> Passwort darf nur aus Buchstaben und Nummern bestehen </p>');
+        }
+        else{
+            authentification.login(this.state.email, this.state.password)
+                .then(() => this.props.history.push('/'));
+        }
+        
     };
 
     render() {
         return (
             <React.Fragment>
                 <img className="logo-login-dark" src={LogoLight} alt="Campus Brett Logo" />
+                <div id="validation"></div>
                 <div className="container-login">
                     <InputLine
                         type="email"
