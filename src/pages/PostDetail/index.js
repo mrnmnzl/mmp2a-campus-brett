@@ -48,7 +48,11 @@ export default class PostDetail extends Component {
             });
     }
 
-    handleSavePost() {
+    handleSavePost = () => {
+        dataHandling.savePost(this.state.id, userId);
+    }
+
+    handleRemoveSavedPost() {
 
     }
 
@@ -75,7 +79,7 @@ export default class PostDetail extends Component {
                             <LargeButton text="EINE NACHRICHT SCHREIBEN" theme="light" />
                         </Link>
                         <Link to="/saved-posts">
-                            <SmallButton text="Beitrag speichern" />
+                            <SmallButton text="Beitrag speichern" onClick={this.handleSavePost}/>
                         </Link>
                     </div>
                     <div id="detail-post-delete-container" >
