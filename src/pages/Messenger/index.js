@@ -35,24 +35,29 @@ export default class Messenger extends Component {
             for (let i = 0; i < chatKeys.length; i++) {
                 const k = chatKeys[i];
                 const fromUser = chatKeys[i].fromUser;
+                const toUser = 'Marion';
 
                 if (chatList[k].fromUser === userId){
                     chats.push({
                         id: k,
-                        fromUser: fromUser
+                        fromUser: fromUser,
+                        toUser: toUser
                     });
                 }
             }
+            
             this.setState({
                 chatUser: chats.fromUser
+
             });
-            console.log(this.state.chatUser)
+            console.log('chatUser: ' + this.state.chatUser)
         }
     }
 
     render() {
         //Link to chat with special id
-        const path = '/chat';
+        //const path = '/chat/' + userId;
+        const path = '/chat'
         return (
             <React.Fragment>
                 <HeaderText text="NACHRICHTEN"/>
