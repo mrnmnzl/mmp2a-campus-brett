@@ -15,7 +15,7 @@ import Chatroom from './pages/Chatroom';
 import EditName from './pages/EditName';
 import PostDetail from './pages/PostDetail';
 import SearchResult from './pages/SearchResult/index';
-import NotFound404 from './pages/NotFound404';
+// import NotFound404 from './pages/NotFound404';
 import './App.css';
 
 export const history = createBrowserHistory();
@@ -37,7 +37,7 @@ class App extends Component {
                         <Route path="/edit-name" component={EditName} />
                         <Route path="/post/:id" component={PostDetail} />
                         <Route path="/search/:category/:tag" component={SearchResult} />
-                        <Route path="*" component={NotFound404} />
+                        {/* <Route path="/404" component={NotFound404} /> */}
                     </EnsureLoggedInContainer>
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
