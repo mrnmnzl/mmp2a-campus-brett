@@ -23,7 +23,7 @@ export default class HomeSearch extends PureComponent {
         if (postList === null) {
             return;
         }
-
+        console.log(postList);
         const postKeys = Object.keys(postList);
 
         let posts = [];
