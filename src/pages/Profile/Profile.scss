@@ -1,0 +1,70 @@
+.profile-detail-container {
+    position: fixed;
+    top: 80px;
+
+    width: calc(100% - 30px);
+    height: 120px;
+
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: 'image name' 'image mail';
+    grid-gap: 5px;
+
+    padding: 20px 15px 0;
+
+    img {
+        grid-area: image;
+        width: 100px;
+
+        justify-self: center;
+        align-self: center;
+    }
+
+    .profile-name {
+        grid-area: name;
+
+        position: absolute;
+
+        justify-self: start;
+        align-self: end;
+
+        font-family: 'Cardenio Modern', sans-serif;
+        font-size: 25px;
+        color: var(--light);
+    }
+
+    .profile-email {
+        grid-area: mail;
+
+        justify-self: start;
+        align-self: start;
+
+        font-family: 'Roboto Thin', sans-serif;
+        font-size: 16px;
+        color: var(--light);
+    }
+}
+.posts-container-profile {
+    position: absolute;
+    top: 260px;
+
+    width: 100%;
+    height: calc(100% - 220px);
+
+    > * {
+        text-decoration: none;
+    }
+
+    overflow: auto;
+}
+
+.profile-post-title {
+    position: absolute;
+    bottom: 210px;
+
+    height: 40px;
+
+    border-bottom: 2px solid var(--light);
+}
+
