@@ -34,6 +34,10 @@ class App extends Component {
                         <Route path="/new-post" component={NewPost} />
                         <Route exact path="/search" component={Search} />
                         <Route path="/chat" component={Chatroom} />
+                        
+                        {/* 
+                        Bei userID mitgabe
+                        <Route path="/chat/:userId" component={Chatroom} /> */}
                         <Route path="/edit-name" component={EditName} />
                         <Route path="/post/:id" component={PostDetail} />
                         <Route path="/search/:category/:tag" component={SearchResult} />

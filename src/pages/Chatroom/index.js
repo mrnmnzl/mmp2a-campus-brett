@@ -12,7 +12,8 @@ export default class Chatroom extends Component {
     state = {
         message: '',
         messages: [],
-        userName: ''
+        userName: '',
+        userID: this.props.match.params.userId
     }
 
     // componentWillMount() {
@@ -148,6 +149,7 @@ export default class Chatroom extends Component {
 
         return (
             <React.Fragment>
+                {/* <HeaderIcon text={this.state.userID} icon="back" onClick={this.handleBack}/> */}
                 <HeaderIcon text="CHATROOM" icon="back" onClick={this.handleBack}/>
                 <div className="container-chat">
                     <ol className="chat-messages">
