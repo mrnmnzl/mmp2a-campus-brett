@@ -12,19 +12,6 @@
     }
 }
 
-.detail-post-button-container {
-    position: absolute;
-    bottom: 50px;
-
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-
-    height: 200px;
-    width: calc(100% - 40px);
-}
-
 .detail-post-name {
     height: 20px;
     font-family: 'Roboto Thin', sans-serif;
@@ -35,10 +22,29 @@
     font-size: 25px;
 }
 
-.detail-post-description {
-    min-height: 50px;
-    font-family: 'Roboto Thin', sans-serif;
+#detail-post-button-container {
+    position: absolute;
+    bottom: 50px;
 
-    margin-bottom: 40px;
+    display: none;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+
+    height: 200px;
+    width: calc(100% - 40px);
+}
+
+#detail-post-delete-container {
+    position: absolute;
+    bottom: 50px;
+
+    display: none;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+
+    height: 200px;
+    width: calc(100% - 40px);
 }
 

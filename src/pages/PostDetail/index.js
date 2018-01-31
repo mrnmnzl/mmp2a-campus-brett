@@ -5,8 +5,10 @@ import Navigation from '../../components/Navigation';
 import HeaderIcon from '../../components/HeaderIcon';
 import LargeButton from '../../components/LargeButton';
 import SmallButton from '../../components/SmallButton';
+import { userId } from '../../components/EnsureLoggedInContainer';
 import { history } from '../../App';
 import { Link } from 'react-router-dom';
+import dataHandling from '../../services/DataHandling';
 import './PostDetail.css';
 
 export default class PostDetail extends Component {
@@ -18,7 +20,7 @@ export default class PostDetail extends Component {
         description: '',
         tag: '',
         chat: ''
-    };
+    }
 
     componentWillMount() {
         const id = this.props.match.params.id;
@@ -37,7 +39,22 @@ export default class PostDetail extends Component {
                     description: snapshot.val().description,
                     chat: path
                 });
+            
+                if(snapshot.val().user !== userId) {
+                    document.getElementById("detail-post-button-container").style.display = "flex";
+                } else {
+                    document.getElementById("detail-post-delete-container").style.display = "flex";
+                }
             });
+    }
+
+    handleSavePost() {
+
+    }
+
+    handleDelete = () => {
+        dataHandling.deletePost(this.state.id);
+        this.handleGoBack();
     }
 
     handleGoBack = () => {
@@ -45,7 +62,6 @@ export default class PostDetail extends Component {
     };
 
     render() {
-
         return (
             <React.Fragment>
                 <HeaderIcon icon="back" text="DETAILANSICHT" onClick={this.handleGoBack} />
@@ -54,11 +70,16 @@ export default class PostDetail extends Component {
                     <p className="detail-post-title">{this.state.title}</p>
                     <p className="detail-post-description">{this.state.description}</p>
                     <span className="tag">{this.state.tag}</span>
-                    <div className="detail-post-button-container">
+                    <div id="detail-post-button-container">
                         <Link to={this.state.chat}>
                             <LargeButton text="EINE NACHRICHT SCHREIBEN" theme="light" />
                         </Link>
-                        <SmallButton text="Beitrag speichern" />
+                        <Link to="/saved-posts">
+                            <SmallButton text="Beitrag speichern" />
+                        </Link>
+                    </div>
+                    <div id="detail-post-delete-container" >
+                        <LargeButton text="DIESEN POST LÖSCHEN" theme="light" onClick={this.handleDelete}/>
                     </div>
                 </div>
                 <Navigation />
