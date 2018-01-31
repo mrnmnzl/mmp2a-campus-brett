@@ -47,6 +47,15 @@ class DataHandling {
         const post = database.ref('posts/' + postId);
         post.remove();
     }
+
+    savePost(postId, userId) {
+        const savedPostsRef = database.ref('savedPosts/' + userId);
+        savedPostsRef.push({postId: postId});
+    }
+
+    removeSavedPost(postId, user) {
+
+    }
 }
 
 export default new DataHandling();
