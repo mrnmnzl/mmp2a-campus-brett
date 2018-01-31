@@ -11,6 +11,7 @@ import LargeButton from '../../components/LargeButton';
 import dataHandling from '../../services/DataHandling';
 import { history } from '../../App';
 import './NewPost.css';
+import validator from 'validator';
 
 export default class NewPost extends Component {
     state = {
@@ -67,7 +68,49 @@ export default class NewPost extends Component {
     };
 
     handleSubmit = () => {
-        dataHandling.createNewPost(this.state.name, this.state.category, this.state.title, this.state.description, this.state.tag);
+        //Title Validation
+        if(!validator.isEmpty(this.state.title)){
+            const container = document.getElementById('validation');
+            container.insertAdjacentHTML('beforeend', '<p> Der Titel ist zu kurz </p>');
+        }
+        else if(!validator.isAscii(this.state.title)){
+            const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            container.insertAdjacentHTML('beforeend', '<p> Ungültiger Titel </p>');
+        }
+        else if(/\d/.test(this.state.title)){
+            const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            container.insertAdjacentHTML('beforeend', '<p> Der Titel darf nur aus Buchstaben bestehen </p>');
+        }
+        else if(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(this.state.title)){
+            const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            container.insertAdjacentHTML('beforeend', '<p> Der Titel darf nur aus Buchstaben bestehen </p>');
+        }
+
+        //Description Validation
+        if(validator.isEmpty(this.state.description)){
+            const container = document.getElementById('validation');
+            container.insertAdjacentHTML('beforeend', '<p> Die Beschreibung ist zu kruz </p>');
+        }
+        else if(/[~`\^*+=\-\[\]\\;/{}|\\<>]/g.test(this.state.title)){
+            const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            container.insertAdjacentHTML('beforeend', '<p> Der Titel darf nur aus Buchstaben bestehen </p>');
+        }
+
+        else{
+            dataHandling.createNewPost(this.state.name, this.state.category, this.state.title, this.state.description, this.state.tag);            
+        }
     };
 
     render() {
@@ -75,6 +118,7 @@ export default class NewPost extends Component {
             <React.Fragment>
                 <HeaderIcon text="NEUEN BEITRAG VERFASSEN" icon="close" onClick={this.handleClose} />
                 <form className="container-new-post">
+                    <div id="validation"></div>
                     <Headline text="KATEGORIE" />
                     <div className="radio-container" onChange={this.handleCategory}>
                         <RadioCategory />
