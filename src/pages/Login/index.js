@@ -31,6 +31,9 @@ export default class Login extends Component {
     handleSubmit = () => {
         if(!validator.isEmail(this.state.email)){
             const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
             container.insertAdjacentHTML('beforeend', '<p> Dies ist keine Email </p>');    
         }
         if(!validator.isAlphanumeric(this.state.password)){
