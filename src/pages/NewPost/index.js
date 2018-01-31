@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-// import * as firebase from 'firebase';
+import * as firebase from 'firebase';
 import HeaderIcon from '../../components/HeaderIcon';
 import RadioCategory from '../../components/RadioCategory';
 import Headline from '../../components/Headline';
@@ -8,25 +8,38 @@ import InputField from '../../components/InputField';
 import InputArea from '../../components/InputArea';
 import CategoryTag from '../../components/CategoryTag';
 import LargeButton from '../../components/LargeButton';
-import './NewPost.css';
 import dataHandling from '../../services/DataHandling';
 import { history } from '../../App';
+import './NewPost.css';
 
 export default class NewPost extends Component {
     state = {
+        name: '',
         category: 'search',
         title: '',
         description: '',
         tag: ''
     };
 
-    componentDidMount = () => {};
+    componentDidMount() {
+        let userId = firebase.auth().currentUser.uid;
+        firebase
+        .database()
+        .ref('/users/' + userId)
+        .once('value')
+        .then(snapshot => {
+            this.setState({
+                name: snapshot.val().username
+            })
+        });
+    }
 
     handleCategory = event => {
         this.setState({
             category: event.target.value
         });
-        //setTimeout(() => console.log(this.state.category), 0);
+        
+        document.getElementById('tags-container').style.display = "flex";
     };
 
     handleTitle = event => {
@@ -40,7 +53,7 @@ export default class NewPost extends Component {
         this.setState({
             description: event.target.value
         });
-        //setTimeout(() => console.log(this.state.description), 0);
+        //console.log(this.state.description), 0);
     };
 
     handleTag = value => {
@@ -54,17 +67,7 @@ export default class NewPost extends Component {
     };
 
     handleSubmit = () => {
-        // let userId = firebase.auth().currentUser.uid;
-        let username = "Max Mustermann";
-        // firebase
-        // .database()
-        // .ref('/users/' + userId)
-        // .once('value')
-        // .then(snapshot => {
-        //     username = snapshot.val().username;
-        // });
-
-        dataHandling.createNewPost(username, this.state.category, this.state.title, this.state.description, this.state.tag);
+        dataHandling.createNewPost(this.state.name, this.state.category, this.state.title, this.state.description, this.state.tag);
     };
 
     render() {
@@ -85,19 +88,15 @@ export default class NewPost extends Component {
                         value={this.state.description}
                     />
                     <Headline text="TAG" />
-                    <div className="tags-container">
-                        <CategoryTag text="werkzeug" onClick={this.handleTag} category={this.state.category} />
-                        <CategoryTag text="hilfe" onClick={this.handleTag} category={this.state.category} />
-                        <CategoryTag
-                            text="mitfahrgelegenheit"
-                            onClick={this.handleTag}
-                            category={this.state.category}
-                        />
-                        <CategoryTag text="lebensmittel" onClick={this.handleTag} category={this.state.category} />
-                        <CategoryTag text="kleidung" onClick={this.handleTag} category={this.state.category} />
-                        <CategoryTag text="unterhaltung" onClick={this.handleTag} category={this.state.category} />
-                        <CategoryTag text="putzen" onClick={this.handleTag} category={this.state.category} />
-                        <CategoryTag text="party" onClick={this.handleTag} category={this.state.category} />
+                    <div className="tags-container" id="tags-container">
+                        <CategoryTag id="tag-werkzeug" text="werkzeug" onClick={this.handleTag} />
+                        <CategoryTag id="tag-hilfe" text="hilfe" onClick={this.handleTag} />
+                        <CategoryTag id="tag-mitfahrgelegenheit" text="mitfahrgelegenheit" onClick={this.handleTag} />
+                        <CategoryTag id="tag-lebensmittel" text="lebensmittel" onClick={this.handleTag} />
+                        <CategoryTag id="tag-kleidung" text="kleidung" onClick={this.handleTag} />
+                        <CategoryTag id="tag-unterhaltung" text="unterhaltung" onClick={this.handleTag} />
+                        <CategoryTag id="tag-putzen" text="putzen" onClick={this.handleTag} />
+                        <CategoryTag id="tag-party" text="party" onClick={this.handleTag} />
                     </div>
                     <div className="button-container">
                         <LargeButton
