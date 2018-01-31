@@ -20,14 +20,30 @@ export default class EditName extends Component {
     };
 
     handleSubmit = event => {
-        if(!validator.isLength(this.state.username, {max: 20, min: 6})){
+        if(!validator.isLength(this.state.username, {max: 20, min: 4})){
             const container = document.getElementById('validation');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
             }
-            container.insertAdjacentHTML('beforeend', '<p> Dein Benutzername muss zwischen 6 und 20 Zeichen haben </p>');
+            container.insertAdjacentHTML('beforeend', '<p> Dein Benutzername ist zu kurz </p>');
         }
-        else if(!validator.isAlpha(this.state.username)){
+        
+        //check if username contains no Number or specialchar
+        if(!validator.isAscii(this.state.username)){
+            const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            container.insertAdjacentHTML('beforeend', '<p> Ungültiger Benutzername </p>');
+        }
+        else if(/\d/.test(this.state.username)){
+            const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            container.insertAdjacentHTML('beforeend', '<p> Dein Benutzername darf nur aus Buchstaben bestehen </p>');
+        }
+        else if(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(this.state.username)){
             const container = document.getElementById('validation');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
