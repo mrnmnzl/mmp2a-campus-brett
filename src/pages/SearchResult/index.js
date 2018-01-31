@@ -98,7 +98,7 @@ export default class SearchResult extends Component {
                             </Link>
                         );
                     })}
-                    <div className="button-container">
+                    <div className="button-container-search-result">
                         <div className="button-again">
                             <LargeButton
                                 className="submit-button"

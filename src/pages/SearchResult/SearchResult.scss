@@ -16,22 +16,17 @@
     color: var(--light);
     text-align: center;
 }
-
-.posts-container{
+    
+.button-container-search-result{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    position: absolute;
+    bottom: 50px;
 
-    .button-container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        bottom: 50px;
-    
-        .button-again{
-            margin-bottom: 10px;
-        }
+    .button-again{
+        margin-bottom: 10px;
     }
 }
+
