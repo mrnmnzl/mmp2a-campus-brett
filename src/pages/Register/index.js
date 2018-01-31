@@ -58,10 +58,16 @@ export default class Register extends Component {
         }
         else if(!validator.isAlphanumeric(this.state.password)){
             const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
             container.insertAdjacentHTML('beforeend', '<p> Passwort darf nur aus Buchstaben und Nummern bestehen </p>');
         }
         else if(!validator.equals(this.state.password, this.state.password_controll)){
             const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
             container.insertAdjacentHTML('beforeend', '<p> Die Passwörter müssen übereinstimmen </p>');
         }
         else{
