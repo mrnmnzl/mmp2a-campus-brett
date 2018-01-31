@@ -5,6 +5,7 @@ import InputLine from '../../components/InputLine';
 import LargeButton from '../../components/LargeButton';
 import DataHandling from '../../services/DataHandling';
 import { userId } from '../../components/EnsureLoggedInContainer';
+import './EditName.css';
 
 export default class EditName extends Component {
     state = {
@@ -25,12 +26,13 @@ export default class EditName extends Component {
     render() {
         return (
             <React.Fragment>
-                <HeaderText text="PROFIL VERVOLLSTÄNDIGEN" />
-                <div className="container-login">
+                <div className="edit-name-page-container">
+                    <HeaderText text="PROFIL VERVOLLSTÄNDIGEN" />
+                    <p>Bitte gib deinen Namen ein. </p>
                     <InputLine
                         type="text"
                         value={this.state.username}
-                        placeholder="Benutzername"
+                        placeholder="z. B. Max Mustermann"
                         name="username"
                         id="username"
                         onChange={this.handleNameChange}

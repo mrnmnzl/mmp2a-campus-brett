@@ -16,7 +16,8 @@ export default class PostDetail extends Component {
         time: '',
         title: '',
         description: '',
-        tag: ''
+        tag: '',
+        chat: ''
     };
 
     componentWillMount() {
@@ -26,13 +27,15 @@ export default class PostDetail extends Component {
             .ref('/posts/' + id)
             .once('value')
             .then(snapshot => {
+                const path = "/chat/" + snapshot.val().user;
                 this.setState({
                     id: id,
                     name: snapshot.val().name,
                     title: snapshot.val().title,
                     time: snapshot.val().time,
                     tag: snapshot.val().tag,
-                    description: snapshot.val().description
+                    description: snapshot.val().description,
+                    chat: path
                 });
             });
     }
@@ -52,7 +55,7 @@ export default class PostDetail extends Component {
                     <p className="detail-post-description">{this.state.description}</p>
                     <span className="tag">{this.state.tag}</span>
                     <div className="detail-post-button-container">
-                        <Link to='/chat'>
+                        <Link to={this.state.chat}>
                             <LargeButton text="EINE NACHRICHT SCHREIBEN" theme="light" />
                         </Link>
                         <SmallButton text="Beitrag speichern" />
