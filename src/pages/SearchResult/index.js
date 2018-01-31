@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import Navigation from '../../components/Navigation';
 import HeaderIcon from '../../components/HeaderIcon';
+import LargeButton from '../../components/LargeButton';
 import dataHandling from '../../services/DataHandling';
 import Post from '../../components/Post';
 import { Link } from 'react-router-dom';
@@ -16,7 +17,7 @@ export default class SearchResult extends Component {
     }
 
     handleBack = event => {
-        history.goBack();
+        history.push('/search');
     }
 
     componentWillMount() {
@@ -27,7 +28,7 @@ export default class SearchResult extends Component {
         const postList = data.val();
         if (postList === null) {
             const container = document.getElementById('warnings');
-            container.insertAdjacentHTML('beforeend', '<p> Keine Posts mit diesen Eigenschaften gefunden! </p>');
+            container.insertAdjacentHTML('beforeend', '<p> Es gibt noch keine Beiträge </p>');
         } else {
             const postKeys = Object.keys(postList);
 
@@ -46,7 +47,7 @@ export default class SearchResult extends Component {
                 console.log(this.state.category)
                 console.log(this.state.tag)
 
-                if (postList[k].category === this.state.category && postList[k].tag === this.state.tag)
+                if (postList[k].category === this.state.category && postList[k].tag === this.state.tag){
                     posts.push({
                         id: k,
                         name: name,
@@ -55,13 +56,28 @@ export default class SearchResult extends Component {
                         description: description,
                         tag: tag
                     });
+                }   
             }
 
             this.setState({
                 posts: posts
             });
+
+
+            if(posts.length === 0){
+                const container = document.getElementById('warnings');
+                container.insertAdjacentHTML('beforeend', '<p> Keine Posts mit diesen Eigenschaften gefunden! </p>');    
+            }
         }
     };
+
+    handleSubmit = event => {
+        history.push('/search');
+    }
+
+    handleHome = event => {
+        history.push('/');
+    }
 
     render() {
         return (
@@ -69,23 +85,41 @@ export default class SearchResult extends Component {
                 <HeaderIcon text="SUCHERGEBNISSE" icon="back" onclick={this.handleBack}/>
                 <div className="posts-container" id="post-container">
                     <div id="warnings"></div>
-                        {this.state.posts.map(post => {
-                            const path = '/post/' + post.id;
-                            return (
-                                <Link to={path}>
-                                    <Post
-                                        theme={this.category}
-                                        key={post.id}
-                                        name={post.name}
-                                        time={post.time}
-                                        title={post.title}
-                                        description={post.description}
-                                        tag={post.tag}
-                                    />
-                                </Link>
-                            );
-                        })}
+                    {this.state.posts.map(post => {
+                        const path = '/post/' + post.id;
+                        return (
+                            <Link to={path}>
+                                <Post
+                                    theme={this.category}
+                                    key={post.id}
+                                    name={post.name}
+                                    time={post.time}
+                                    title={post.title}
+                                    description={post.description}
+                                    tag={post.tag}
+                                />
+                            </Link>
+                        );
+                    })}
+                    <div className="button-container">
+                        <div className="button-again">
+                            <LargeButton
+                                className="submit-button"
+                                theme="light"
+                                text="ERNEUT SUCHEN"
+                                id="search-again-button"
+                                onClick={this.handleSubmit}
+                            />
+                        </div>
+                        <LargeButton
+                            className="submit-button"
+                            theme="light"
+                            text="SCHLIESSEN"
+                            id="close-button"
+                            onClick={this.handleHome}
+                        />
                     </div>
+                </div>
                 <Navigation />
             </React.Fragment>
         );
