@@ -6,6 +6,7 @@ import LargeButton from '../../components/LargeButton';
 import DataHandling from '../../services/DataHandling';
 import { userId } from '../../components/EnsureLoggedInContainer';
 import './EditName.css';
+import validator from 'validator';
 
 export default class EditName extends Component {
     state = {
@@ -19,8 +20,22 @@ export default class EditName extends Component {
     };
 
     handleSubmit = event => {
-        DataHandling.addNameToUser(userId, this.state.username);
-        this.props.history.push('/');
+        if(!validator.isLength(this.state.username, {max: 20, min: 6})){
+            const container = document.getElementById('validation');
+            container.insertAdjacentHTML('beforeend', '<p> Dein Benutzername muss zwischen 6 und 20 Zeichen haben </p>');
+        }
+        else if(!validator.isAlpha(this.state.username)){
+            const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            container.insertAdjacentHTML('beforeend', '<p> Dein Benutzername darf nur aus Buchstaben bestehen </p>');
+        }
+        else {
+            DataHandling.addNameToUser(userId, this.state.username);
+            this.props.history.push('/');
+        }
+        
     };
 
     render() {
@@ -28,6 +43,7 @@ export default class EditName extends Component {
             <React.Fragment>
                 <div className="edit-name-page-container">
                     <HeaderText text="PROFIL VERVOLLSTÄNDIGEN" />
+                    <div id="validation"></div>
                     <p>Bitte gib deinen Namen ein. </p>
                     <InputLine
                         type="text"
