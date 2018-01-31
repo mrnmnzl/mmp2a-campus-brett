@@ -14,3 +14,37 @@
 
     cursor: pointer;
 }
+
+.tag-search {
+    margin-left: 0;
+    margin-right: 5px;
+    
+    padding: 3px 15px;
+    
+    border-radius: 20px;
+    
+    background-color: var(--search);
+    
+    font-family: 'Roboto Light', sans-serif;
+    font-size: 12px;
+    color: var(--light);
+
+    cursor: pointer;
+}
+
+.tag-offer {
+    margin-left: 0;
+    margin-right: 5px;
+    
+    padding: 3px 15px;
+    
+    border-radius: 20px;
+    
+    background-color: var(--find);
+    
+    font-family: 'Roboto Light', sans-serif;
+    font-size: 12px;
+    color: var(--light);
+
+    cursor: pointer;
+}
