@@ -48,6 +48,7 @@ export default class HomeOffer extends PureComponent {
                     tag: tag
                 });
         }
+        posts.reverse();
         this.setState({
             posts: posts
         });
