@@ -22,6 +22,9 @@ export default class EditName extends Component {
     handleSubmit = event => {
         if(!validator.isLength(this.state.username, {max: 20, min: 6})){
             const container = document.getElementById('validation');
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
             container.insertAdjacentHTML('beforeend', '<p> Dein Benutzername muss zwischen 6 und 20 Zeichen haben </p>');
         }
         else if(!validator.isAlpha(this.state.username)){
