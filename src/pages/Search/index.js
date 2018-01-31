@@ -72,7 +72,13 @@ export default class Search extends Component {
                     </div>
                     <div id="warnings"></div>
                     <div className="button-container">
-                        <LargeButton text="SUCHEN" theme="light" onClick={this.handleSubmit}/>
+                        <LargeButton 
+                            className="search-button"
+                            text="SUCHEN" 
+                            theme="light" 
+                            onClick={this.handleSubmit}
+                            id="search-button"
+                        />
                     </div>
                 </div>
                 <Navigation />
