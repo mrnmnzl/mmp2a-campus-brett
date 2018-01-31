@@ -42,6 +42,11 @@ class DataHandling {
                 username: name
             });
     }
+
+    deletePost(postId) {
+        const post = database.ref('posts/' + postId);
+        post.remove();
+    }
 }
 
 export default new DataHandling();
