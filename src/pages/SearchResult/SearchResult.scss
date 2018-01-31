@@ -1,3 +1,17 @@
+.posts-container-search-result {
+    position: absolute;
+    top: 80px;
+
+    width: 100%;
+    height: calc(100% - 80px - 50px);
+
+    & > * {
+        text-decoration: none;
+    }
+
+    overflow: auto;
+}
+
 #warnings{
     color: var(--light);
     text-align: center;

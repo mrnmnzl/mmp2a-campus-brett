@@ -43,9 +43,6 @@ export default class SearchResult extends Component {
                 const description = postList[k].description;
                 const tag = postList[k].tag;
 
-                console.log(this.state.category)
-                console.log(this.state.tag)
-
                 if (postList[k].category === this.state.category && postList[k].tag === this.state.tag)
                     posts.push({
                         id: k,
@@ -60,6 +57,8 @@ export default class SearchResult extends Component {
             this.setState({
                 posts: posts
             });
+
+
         }
     };
 
@@ -67,14 +66,14 @@ export default class SearchResult extends Component {
         return (
             <React.Fragment>
                 <HeaderIcon text="SUCHERGEBNISSE" icon="back" onclick={this.handleBack}/>
-                <div className="posts-container" id="post-container">
+                <div className="posts-container-search-result" id="post-container">
                     <div id="warnings"></div>
                         {this.state.posts.map(post => {
                             const path = '/post/' + post.id;
                             return (
                                 <Link to={path}>
                                     <Post
-                                        theme={this.category}
+                                        theme={this.state.category}
                                         key={post.id}
                                         name={post.name}
                                         time={post.time}
