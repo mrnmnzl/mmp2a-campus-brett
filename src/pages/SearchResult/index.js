@@ -15,7 +15,7 @@ export default class SearchResult extends Component {
         posts: []
     }
 
-    handleBack = event => {
+    handleBack = () => {
         history.goBack();
     }
 
@@ -71,7 +71,7 @@ export default class SearchResult extends Component {
                         {this.state.posts.map(post => {
                             const path = '/post/' + post.id;
                             return (
-                                <Link to={path}>
+                                <Link to={path} key={post.time}>
                                     <Post
                                         theme={this.state.category}
                                         key={post.id}
