@@ -2,13 +2,15 @@
     position: absolute;
     top: 80px;
 
+    height: calc(100% - 120px);
+
     padding: 20px;
 }
 
 .tags-container {
     width: calc(100% - 40px);
 
-    display: flex;
+    display: none;
     flex-direction: row;
     flex-wrap: wrap;
 
@@ -21,6 +23,11 @@
 }
 
 .button-container {
+    position: absolute;
+    bottom: 50px;
+
+    width: calc(100% - 40px);
+
     display:flex;
     justify-content: center;
     align-items: center;
