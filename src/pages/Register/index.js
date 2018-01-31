@@ -36,7 +36,7 @@ export default class Register extends Component {
 
     handleSubmit = () => {
         //Email Validation
-        if(!validator.isLength(this.state.email, {max: 30, min: 8})){
+        if(!validator.isLength(this.state.email, {max: 50, min: 8})){
             const container = document.getElementById('validation');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
