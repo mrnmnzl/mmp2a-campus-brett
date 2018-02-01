@@ -24,18 +24,22 @@
 
 .button-container {
     position: absolute;
-    bottom: 50px;
+    bottom: 30px;
 
     width: calc(100% - 40px);
 
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#validation{
+#validation {
     font-size: 10px;
     color: red;
     text-align: center;
     padding-bottom: 15px;
+}
+
+.radio-container {
+    margin-bottom: 20px;
 }
