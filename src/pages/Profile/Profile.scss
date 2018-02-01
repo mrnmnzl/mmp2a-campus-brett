@@ -46,11 +46,11 @@
     }
 }
 .posts-container-profile {
-    position: absolute;
-    top: 260px;
+    position: fixed;
+    top: 290px;
 
     width: 100%;
-    height: calc(100% - 220px);
+    height: calc(100% - 290px - 50px);
 
     > * {
         text-decoration: none;
@@ -59,12 +59,16 @@
     overflow: auto;
 }
 
-.profile-post-title {
-    position: absolute;
-    bottom: 210px;
+.profile-title-container {
+    position: fixed;
+    top: 230px;
 
-    height: 40px;
+    width: calc(100% - 80px);
+    height: 45px;
+
+    margin: 0 40px;
 
     border-bottom: 2px solid var(--light);
+    text-align: center;
 }
 

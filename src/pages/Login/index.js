@@ -5,10 +5,9 @@ import LinkBar from '../../components/LinkBar';
 import InputLine from '../../components/InputLine';
 import LargeButton from '../../components/LargeButton';
 import LogoLight from '../../images/logo-light.png';
-import './Login.css';
 import authentification from '../../services/Authentification';
 import validator from 'validator';
-import isEmail from 'validator/lib/isEmail';
+import './Login.css';
 
 export default class Login extends Component {
     state = {

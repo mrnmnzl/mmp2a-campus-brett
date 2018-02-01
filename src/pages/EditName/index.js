@@ -43,7 +43,7 @@ export default class EditName extends Component {
             }
             container.insertAdjacentHTML('beforeend', '<p> Dein Benutzername darf nur aus Buchstaben bestehen </p>');
         }
-        else if(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(this.state.username)){
+        else if(/[~`!#$%&*+=\-\]\\';,/{}|\\":<>]/g.test(this.state.username)){
             const container = document.getElementById('validation');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
