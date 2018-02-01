@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import Navigation from '../../components/Navigation';
 import HeaderText from '../../components/HeaderText';
 import Chats from '../../components/Chats';
-import './Messenger.css'
+import './Messenger.css';
 import { userId } from '../../components/EnsureLoggedInContainer/index';
 import { history } from '../../App';
 import { Link } from 'react-router-dom';
@@ -72,6 +72,7 @@ export default class Messenger extends Component {
             else {
                 //neuen Chat erstellen
                 this.createNewChat(this.state.chatWith, userId, this.state.name);
+                history.push('/chat/' + newChat.id);
             }
         };
     }

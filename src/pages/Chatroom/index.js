@@ -6,7 +6,7 @@ import InputField from '../../components/InputField';
 import Message from '../../components/Message';
 import { userId } from '../../components/EnsureLoggedInContainer';
 import { Link } from 'react-router-dom';
-import './Chatroom.css'
+import './Chatroom.css';
 
 
 export default class Chatroom extends Component {
@@ -79,7 +79,7 @@ export default class Chatroom extends Component {
     //Die Nachricht in DB speichern
     saveNewMessage(toUser, fromUser, time, text){
         const database = firebase.database();
-        const messageRef = database.ref('chats/messages' + this.state.uniqueID);
+        const messageRef = database.ref('chats/messages');
         const newMessage = messageRef.push();
         const date = new Date().toLocaleString('de-DE', { hour12: false });
         
