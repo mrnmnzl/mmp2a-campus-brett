@@ -32,7 +32,7 @@ export default class PostDetail extends Component {
             .ref('/posts/' + id)
             .once('value')
             .then(snapshot => {
-                const path = "/chat/" + snapshot.val().user;
+                const path = "/messengerredirect/" + snapshot.val().user;
                 this.setState({
                     id: id,
                     name: snapshot.val().name,
