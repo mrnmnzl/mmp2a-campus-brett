@@ -1,0 +1,26 @@
+.posts-container-saved-posts {
+    position: absolute;
+    top: 80px;
+
+    width: 100%;
+    height: calc(100% - 80px - 50px);
+    
+    overflow: auto;
+
+    & > * {
+        text-decoration: none;
+    }
+}
+
+#warning-saved-posts {
+    display: none;
+    justify-content: center;
+
+    p {
+        margin: 40px 0;
+
+        font-family: 'Roboto Medium', sans-serif;
+        font-size: 14px;
+        color: var(--light);
+    }
+}
