@@ -24,6 +24,7 @@ export default class Chatroom extends Component {
     //getting username 
     componentDidMount(){
         console.log('componentDidMount');
+        //dataHandling.addDataChangeListener('chats', this.handleChatsDataChange);
 
         //firebase conection to chats - getting ids and username from chatpartners
         firebase.database()
@@ -35,7 +36,55 @@ export default class Chatroom extends Component {
                 name: snapshot.val().toUserName
             })
         });
+
+        //firebase conection to messages from chat - getting ids and username from chatpartners
+        firebase.database()
+        .ref('/chats/' + this.state.chatID + '/messages')
+        .once('value')
+        .then(snapshot => {
+            this.setState({
+                userID: snapshot.val().toUser,
+                name: snapshot.val().fromUser,
+                time: snapshot.val().time,
+                message: snapshot.val().text
+            })
+        });
+
+        const messageList = data.val();
         
+        if (messageList === null) {
+            return;
+        }
+        
+        const messageKeys = Object.keys(messageList);
+
+        let messages = [];
+        for (let i = 0; i < messageKeys.length; i++) {
+            const k = messageKeys[i];
+            const userID = messageList[i].userID;
+            const name = messageList[i].name;
+            let time = messageList[i].time;
+            const message = messageList[i].text;
+             
+            messages.push({
+                id: k,
+                userID: userID,
+                name: name,
+                time: time,
+                message: message
+            });
+            
+            messages.reverse();
+            this.setState({
+                message: messages.message,
+                messages: messages
+            });  
+        }
+
+        for(const x = 0; x < messages.length; x++){
+            const container = document.getElementById('messages');
+            container.insertAdjacentHTML('beforeend', this.state.message);
+        }
     }
 
 
@@ -109,6 +158,7 @@ export default class Chatroom extends Component {
                     <HeaderIcon text={chatroomName} icon="back" />
                 </Link>
                 <div className="container-chat">
+                    <div id="messages"></div>
                     <Message text={currentMessage} />
                     <div className="chat-bar">
                         <div className="chat-input" >
