@@ -10,6 +10,7 @@ import { history } from '../../App';
 import { Link } from 'react-router-dom';
 import dataHandling from '../../services/DataHandling';
 import './PostDetail.css';
+import { database } from 'firebase';
 
 export default class PostDetail extends Component {
     state = {
@@ -19,7 +20,9 @@ export default class PostDetail extends Component {
         title: '',
         description: '',
         tag: '',
-        chat: ''
+        chat: '',
+        userId: '',
+        savedPosts: []
     }
 
     componentWillMount() {
@@ -37,14 +40,9 @@ export default class PostDetail extends Component {
                     time: snapshot.val().time,
                     tag: snapshot.val().tag,
                     description: snapshot.val().description,
-                    chat: path
-                });
-            
-                if(snapshot.val().user !== userId) {
-                    document.getElementById("detail-post-button-container").style.display = "flex";
-                } else {
-                    document.getElementById("detail-post-delete-container").style.display = "flex";
-                }
+                    chat: path,
+                    userId: snapshot.val().user
+                });  
             });
     }
 
@@ -63,9 +61,37 @@ export default class PostDetail extends Component {
 
     handleGoBack = () => {
         history.goBack();
-    };
+    }
+
+    handleSavedPostsDataChange = () => {
+        const id = this.props.match.params.id;
+        
+
+        let savedPosts = data.postId;
+        let savedPostsKeys = [];
+        savedPostsKeys = Object.keys(data);
+
+        console.log(data);
+        console.log(savedPosts);
+        console.log(savedPostsKeys);
+        
+        // for (let i = 0; i < savedPostsKeys.length; i++) {
+        //     const savedPostKey = savedPostsKeys[i];
+        //     const savedPostId = savedPosts[savedPostKey].postId;
+
+        //     console.log(id);
+        //     console.log(savedPostId);
+
+        //     if(savedPostId === id) {
+        //         console.log("hey");
+        //     }  
+        // }
+    }
 
     render() {
+        
+
+       
         return (
             <React.Fragment>
                 <HeaderIcon icon="back" text="DETAILANSICHT" onClick={this.handleGoBack} />
