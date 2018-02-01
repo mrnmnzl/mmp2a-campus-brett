@@ -16,9 +16,9 @@ export default class SearchResult extends Component {
         posts: []
     }
 
-    handleBack = event => {
-        history.push('/search');
-    }
+    handleBack = () => {
+        history.goBack();
+    };
 
     componentWillMount() {
         dataHandling.addDataChangeListener('posts', this.handlePostsDataChange);
@@ -79,7 +79,9 @@ export default class SearchResult extends Component {
     render() {
         return (
             <React.Fragment>
-                <HeaderIcon text="SUCHERGEBNISSE" icon="back" onclick={this.handleSubmit}/>
+                <Link to='/search'>
+                    <HeaderIcon text="SUCHERGEBNISSE" icon="back" onclick={this.handleBack}/>
+                </Link>
                 <div className="posts-container-search-result" id="post-container">
                     <div id="warnings"></div>
                     {this.state.posts.map(post => {

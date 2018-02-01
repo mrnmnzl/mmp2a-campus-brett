@@ -7,6 +7,7 @@ import RadioCategory from '../../components/RadioCategory';
 import CategoryTag from '../../components/CategoryTag';
 import LargeButton from '../../components/LargeButton';
 import { history } from '../../App';
+import { Link } from 'react-router-dom';
 import './Search.css';
 
 export default class Search extends Component {
@@ -15,9 +16,9 @@ export default class Search extends Component {
         category: ''
     } 
 
-    handleBack = event => {
+    handleBack = () => {
         history.push('/');
-    }
+    };
 
     handleCategory = event => {
         this.setState({
@@ -53,7 +54,9 @@ export default class Search extends Component {
     render() {
         return (
             <React.Fragment>
+                <Link to="/">
                 <HeaderIcon text="SUCHE" icon="back" onclick={this.handleBack}/>
+                </Link>
                 <div className="container-new-post">
                     <Headline text="KATEGORIE" />
                     <div className="radio-container" onChange={this.handleCategory}>
