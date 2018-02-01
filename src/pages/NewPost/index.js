@@ -47,14 +47,12 @@ export default class NewPost extends Component {
         this.setState({
             title: event.target.value
         });
-        //setTimeout(() => console.log(this.state.title), 0);
     };
 
     handleDescription = event => {
         this.setState({
             description: event.target.value
         });
-        //console.log(this.state.description), 0);
     };
 
     handleTag = value => {
@@ -87,7 +85,7 @@ export default class NewPost extends Component {
             }
             container.insertAdjacentHTML('beforeend', '<p> Der Titel darf nur aus Buchstaben bestehen </p>');
         }
-        else if(/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(this.state.title)){
+        else if(/[~`!#$%&*+=\-\]\\';,/{}|\\":<>]/g.test(this.state.title)){
             const container = document.getElementById('validation');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
@@ -100,7 +98,7 @@ export default class NewPost extends Component {
             const container = document.getElementById('validation');
             container.insertAdjacentHTML('beforeend', '<p> Die Beschreibung ist zu kruz </p>');
         }
-        else if(/[~`\^*+=\-\[\]\\;/{}|\\<>]/g.test(this.state.title)){
+        else if(/[~`*+=\-\]\\;/{}|\\<>]/g.test(this.state.title)){
             const container = document.getElementById('validation');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
