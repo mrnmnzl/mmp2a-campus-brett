@@ -3,7 +3,7 @@
     top: 80px;
 
     width: 100%;
-    height: calc(100% - 80px - 50px);
+    height: calc(100% - 80px - 150px);
 
     & > * {
         text-decoration: none;
@@ -17,19 +17,22 @@
         text-align: center;
         padding-bottom: 15px;
     }
-        
-    .button-container-search-result{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 20px;
-        margin-top: 20px;
-        .button-again{
-            margin-bottom: 10px;
-        }
-    }
-    
 }
 
+.button-container-search-result{
+    position: fixed;
+    bottom: 40px;
 
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    border-top: 2px solid var(--light);
+
+    > button {
+        margin-bottom: -10px;
+    }
+}

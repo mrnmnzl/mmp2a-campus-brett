@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import Navigation from '../../components/Navigation';
 import HeaderIcon from '../../components/HeaderIcon';
-import LargeButton from '../../components/LargeButton';
+import SmallButton from '../../components/SmallButton';
 import dataHandling from '../../services/DataHandling';
 import Post from '../../components/Post';
 import { Link } from 'react-router-dom';
@@ -18,7 +18,7 @@ export default class SearchResult extends Component {
 
     handleBack = () => {
         history.goBack();
-    };
+    }
 
     componentWillMount() {
         dataHandling.addDataChangeListener('posts', this.handlePostsDataChange);
@@ -53,20 +53,18 @@ export default class SearchResult extends Component {
                         description: description,
                         tag: tag
                     });
-                }   
-            }
-
-            this.setState({
-                posts: posts
-            });
-
-
-            if(posts.length === 0){
-                const container = document.getElementById('warnings');
-                container.insertAdjacentHTML('beforeend', '<p> Keine Posts mit diesen Eigenschaften gefunden! </p>');    
             }
         }
-    
+
+        this.setState({
+            posts: posts
+        });
+
+        if (posts.length === 0) {
+            const container = document.getElementById('warnings');
+            container.insertAdjacentHTML('beforeend', '<p> Keine Posts mit diesen Eigenschaften gefunden! </p>');
+        }
+    }
 
     handleSubmit = event => {
         history.push('/search');
@@ -79,11 +77,11 @@ export default class SearchResult extends Component {
     render() {
         return (
             <React.Fragment>
-                <Link to='/search'>
-                    <HeaderIcon text="SUCHERGEBNISSE" icon="back" onclick={this.handleBack}/>
+                <Link to="/search">
+                    <HeaderIcon text="SUCHERGEBNISSE" icon="back" onclick={this.handleBack} />
                 </Link>
                 <div className="posts-container-search-result" id="post-container">
-                    <div id="warnings"></div>
+                    <div id="warnings" />
                     {this.state.posts.map(post => {
                         const path = '/post/' + post.id;
                         return (
@@ -100,26 +98,24 @@ export default class SearchResult extends Component {
                             </Link>
                         );
                     })}
-                    <div className="button-container-search-result">
-                        <div className="button-again">
-                            <LargeButton
-                                className="submit-button"
-                                theme="light"
-                                text="ERNEUT SUCHEN"
-                                id="search-again-button"
-                                onClick={this.handleSubmit}
-                            />
-                        </div>
-                        <LargeButton
-                            className="submit-button"
-                            theme="light"
-                            text="SCHLIESSEN"
-                            id="close-button"
-                            onClick={this.handleHome}
-                        />
-                    </div>
                 </div>
-                <Navigation />
+                <div className="button-container-search-result">
+                    <SmallButton
+                        className="submit-button"
+                        theme="light"
+                        text="ERNEUT SUCHEN"
+                        id="search-again-button"
+                        onClick={this.handleSubmit}
+                    />
+
+                    <SmallButton
+                        className="submit-button"
+                        theme="light"
+                        text="SCHLIESSEN"
+                        id="close-button"
+                        onClick={this.handleHome}
+                    />
+                </div>
             </React.Fragment>
         );
     }
