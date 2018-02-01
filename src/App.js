@@ -30,11 +30,11 @@ class App extends Component {
                         <Route path="/offer" component={HomeOffer} />
                         <Route path="/profile" component={Profile} />
                         <Route path="/saved-posts" component={SavedPosts} />
-                        <Route path="/messenger" component={Messenger} />
+                        <Route path="/messenger/:fromId" component={Messenger} />
                         <Route path="/new-post" component={NewPost} />
                         <Route exact path="/search" component={Search} />
                         <Route exact path="/chat" component={Chatroom} />
-                        <Route path="/chat/:userId" component={Chatroom} />
+                        <Route path="/chat/:chatId/:userId" component={Chatroom} />
                         <Route path="/edit-name" component={EditName} />
                         <Route path="/post/:id" component={PostDetail} />
                         <Route path="/search/:category/:tag" component={SearchResult} />
