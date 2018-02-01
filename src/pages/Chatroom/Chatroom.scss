@@ -20,16 +20,20 @@
         margin: 15px 10px;
         color: var(--dark);
 
-        span{
-            width: auto;
-            background-color: var(--light);
-            border: none;
-            border-radius: 2px;
-            margin-bottom: 0px;
-            padding: 5px;
-            position: absolute;
-            bottom: 80px;
+        .messages-container{
+            
+            span{
+                width: auto;
+                background-color: var(--light);
+                border: none;
+                border-radius: 2px;
+                margin-bottom: 0px;
+                padding: 5px;
+                position: absolute;
+                bottom: 80px;
+            }
         }
+        
     }
 
     .chat-bar{

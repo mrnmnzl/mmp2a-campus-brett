@@ -4,20 +4,33 @@ import * as firebase from 'firebase';
 import Navigation from '../../components/Navigation';
 import HeaderText from '../../components/HeaderText';
 import Chats from '../../components/Chats';
-import dataHandling from '../../services/DataHandling';
-import './Messenger.css'
-import { Link } from 'react-router-dom';
+import './Messenger.css';
 import { userId } from '../../components/EnsureLoggedInContainer/index';
+import { history } from '../../App';
+import { Link } from 'react-router-dom';
+import dataHandling from '../../services/DataHandling';
 
 export default class Messenger extends Component {
     state = {
-        chatWith: '',
+        chatWith: this.props.match.params.fromId,
+        name: '',
         myID: userId,
         chats: []
     }
 
-    //alle chats aus DB in Liste speichern und auf der Seite ausgeben
     componentWillMount() {
+        console.log('componentWillMount')
+        //Username from ChatWith
+        firebase
+        .database()
+        .ref('/users/' + userId)
+        .once('value')
+        .then(snapshot => {
+            this.setState({
+                name: snapshot.val().username
+            })
+        });
+
         dataHandling.addDataChangeListener('chats', this.handleChatsDataChange);
     }
     //alle chats aus DB in Liste speichern und auf der Seite ausgeben
@@ -38,44 +51,65 @@ export default class Messenger extends Component {
             const toUser = chatList[k].toUser;
             const toUserName = chatList[k].toUserName;
 
-            if(fromUser === userId || toUser === userId){
-                chats.push({
-                    id: k,
-                    fromUser: fromUser,
-                    toUser: toUser,
-                    toUserName: toUserName
-                });
-            }
+            chats.push({
+                id: k,
+                fromUser: fromUser,
+                toUser: toUser,
+                toUserName: toUserName
+            });
+            
 
             this.setState({
                 chats: chats
             });
-            console.log('chat' + chatKeys[i])
-            console.log('ich: ' + userId)
+            
+            //Check if chat already exist
+            if ((chats.fromUser === this.state.chatWith && chats.toUser === userId) || 
+            (chats.fromUser === userId && chats.fromUser === this.state.chatWith)){
+                //it exists
+                history.push('/chat/' + chats.id);
+            }
+            else {
+                //neuen Chat erstellen
+                this.createNewChat(this.state.chatWith, userId, this.state.name);
+                history.push('/chat/' + newChat.id);
+            }
         };
-
-        
     }
 
-    render(){
+    createNewChat(toUser, fromUser, toUserName){
+        const database = firebase.database();
+        const chatRef = database.ref('chats/');
+        const newChat = chatRef.push();
+        
+        newChat
+        .set({
+            toUser: toUser,
+            fromUser: fromUser,
+            toUserName: toUserName
+        })
+
+        history.push('/chat/' + newChat);
+    }
+
+    render() {
+        
         return (
             <React.Fragment>
                 <HeaderText text="NACHRICHTEN"/>
+                
                 <div className="chats-container">
                 {this.state.chats.map(chat => {
                         const path = '/chat/' + chat.id;
-                        if(chat === null){
-                            <p> Keine Chats vorhanden </p>
-                        }
                         return (
                             //React braucht bei Iteratoren eindeutige Keys deswegen key=
                             <Link to={path} key={chat.id}>
                                 <Chats
-                                    text={chat.toUserName}
+                                    text={this.state.name}
                                 />
                             </Link>
                         );
-                    })}
+                })}
                 </div>
                 <Navigation />
             </React.Fragment>
