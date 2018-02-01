@@ -1,21 +1,39 @@
+.container-search {
+    position: absolute;
+    top: 80px;
+
+    height: calc(100% - 120px);
+    width: calc(100% - 40px);
+
+    padding: 20px;
+}
+
 .button-container-search {
+    position: absolute;
+    bottom: 60px;
+
+    width: calc(100% - 40px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 250px;
 }
 
 .tags-container-search{
     width: calc(100% - 40px);
     
-    display: flex;
+    display: none;
     flex-direction: row;
     flex-wrap: wrap;
 
     margin: 0 10px;
     margin-bottom: 30px;
 }
+
+.tags-container-search > * {
+    margin-bottom: 10px;
+}
+
 
 #warnings{
     font-size: 10px;
