@@ -30,6 +30,7 @@ class App extends Component {
                         <Route path="/offer" component={HomeOffer} />
                         <Route path="/profile" component={Profile} />
                         <Route path="/saved-posts" component={SavedPosts} />
+                        <Route exact path="/messenger" component={Messenger} />
                         <Route path="/messenger/:fromId" component={Messenger} />
                         <Route path="/new-post" component={NewPost} />
                         <Route exact path="/search" component={Search} />
