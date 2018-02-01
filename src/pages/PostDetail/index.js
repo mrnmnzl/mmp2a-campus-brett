@@ -10,7 +10,6 @@ import { history } from '../../App';
 import { Link } from 'react-router-dom';
 import dataHandling from '../../services/DataHandling';
 import './PostDetail.css';
-import { database } from 'firebase';
 
 export default class PostDetail extends Component {
     state = {
@@ -20,9 +19,7 @@ export default class PostDetail extends Component {
         title: '',
         description: '',
         tag: '',
-        chat: '',
-        userId: '',
-        savedPosts: []
+        chat: ''
     }
 
     componentWillMount() {
@@ -32,7 +29,7 @@ export default class PostDetail extends Component {
             .ref('/posts/' + id)
             .once('value')
             .then(snapshot => {
-                const path = "/messengerredirect/" + snapshot.val().user;
+                const path = "/chat/" + snapshot.val().user;
                 this.setState({
                     id: id,
                     name: snapshot.val().name,
@@ -40,9 +37,14 @@ export default class PostDetail extends Component {
                     time: snapshot.val().time,
                     tag: snapshot.val().tag,
                     description: snapshot.val().description,
-                    chat: path,
-                    userId: snapshot.val().user
-                });  
+                    chat: path
+                });
+            
+                if(snapshot.val().user !== userId) {
+                    document.getElementById("detail-post-button-container").style.display = "flex";
+                } else {
+                    document.getElementById("detail-post-delete-container").style.display = "flex";
+                }
             });
     }
 
@@ -61,37 +63,9 @@ export default class PostDetail extends Component {
 
     handleGoBack = () => {
         history.goBack();
-    }
-
-    handleSavedPostsDataChange = () => {
-        // const id = this.props.match.params.id;
-        
-
-        // let savedPosts = data.postId;
-        // let savedPostsKeys = [];
-        // savedPostsKeys = Object.keys(data);
-
-        // console.log(data);
-        // console.log(savedPosts);
-        // console.log(savedPostsKeys);
-        
-        // for (let i = 0; i < savedPostsKeys.length; i++) {
-        //     const savedPostKey = savedPostsKeys[i];
-        //     const savedPostId = savedPosts[savedPostKey].postId;
-
-        //     console.log(id);
-        //     console.log(savedPostId);
-
-        //     if(savedPostId === id) {
-        //         console.log("hey");
-        //     }  
-        // }
-    }
+    };
 
     render() {
-        
-
-       
         return (
             <React.Fragment>
                 <HeaderIcon icon="back" text="DETAILANSICHT" onClick={this.handleGoBack} />
