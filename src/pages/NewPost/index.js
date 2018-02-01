@@ -25,22 +25,22 @@ export default class NewPost extends Component {
     componentDidMount() {
         let userId = firebase.auth().currentUser.uid;
         firebase
-        .database()
-        .ref('/users/' + userId)
-        .once('value')
-        .then(snapshot => {
-            this.setState({
-                name: snapshot.val().username
-            })
-        });
+            .database()
+            .ref('/users/' + userId)
+            .once('value')
+            .then(snapshot => {
+                this.setState({
+                    name: snapshot.val().username
+                });
+            });
     }
 
     handleCategory = event => {
         this.setState({
             category: event.target.value
         });
-        
-        document.getElementById('tags-container').style.display = "flex";
+
+        document.getElementById('tags-container').style.display = 'flex';
     };
 
     handleTitle = event => {
@@ -67,25 +67,22 @@ export default class NewPost extends Component {
 
     handleSubmit = () => {
         //Title Validation
-        if(!validator.isEmpty(this.state.title)){
+        if (!validator.isEmpty(this.state.title)) {
             const container = document.getElementById('validation');
             container.insertAdjacentHTML('beforeend', '<p> Der Titel ist zu kurz </p>');
-        }
-        else if(!validator.isAscii(this.state.title)){
+        } else if (!validator.isAscii(this.state.title)) {
             const container = document.getElementById('validation');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
             }
             container.insertAdjacentHTML('beforeend', '<p> Ungültiger Titel </p>');
-        }
-        else if(/\d/.test(this.state.title)){
+        } else if (/\d/.test(this.state.title)) {
             const container = document.getElementById('validation');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
             }
             container.insertAdjacentHTML('beforeend', '<p> Der Titel darf nur aus Buchstaben bestehen </p>');
-        }
-        else if(/[~`!#$%&*+=\-\]\\';,/{}|\\":<>]/g.test(this.state.title)){
+        } else if (/[~`!#$%&*+=\-\]\\';,/{}|\\":<>]/g.test(this.state.title)) {
             const container = document.getElementById('validation');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
@@ -94,20 +91,23 @@ export default class NewPost extends Component {
         }
 
         //Description Validation
-        if(validator.isEmpty(this.state.description)){
+        if (validator.isEmpty(this.state.description)) {
             const container = document.getElementById('validation');
             container.insertAdjacentHTML('beforeend', '<p> Die Beschreibung ist zu kruz </p>');
-        }
-        else if(/[~`*+=\-\]\\;/{}|\\<>]/g.test(this.state.title)){
+        } else if (/[~`*+=\-\]\\;/{}|\\<>]/g.test(this.state.title)) {
             const container = document.getElementById('validation');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
             }
             container.insertAdjacentHTML('beforeend', '<p> Der Titel darf nur aus Buchstaben bestehen </p>');
-        }
-
-        else{
-            dataHandling.createNewPost(this.state.name, this.state.category, this.state.title, this.state.description, this.state.tag);            
+        } else {
+            dataHandling.createNewPost(
+                this.state.name,
+                this.state.category,
+                this.state.title,
+                this.state.description,
+                this.state.tag
+            );
         }
     };
 
@@ -116,7 +116,7 @@ export default class NewPost extends Component {
             <React.Fragment>
                 <HeaderIcon text="NEUEN BEITRAG VERFASSEN" icon="close" onClick={this.handleClose} />
                 <form className="container-new-post">
-                    <div id="validation"></div>
+                    <div id="validation" />
                     <Headline text="KATEGORIE" />
                     <div className="radio-container" onChange={this.handleCategory}>
                         <RadioCategory />
@@ -136,9 +136,12 @@ export default class NewPost extends Component {
                         <CategoryTag id="tag-mitfahrgelegenheit" text="mitfahrgelegenheit" onClick={this.handleTag} />
                         <CategoryTag id="tag-lebensmittel" text="lebensmittel" onClick={this.handleTag} />
                         <CategoryTag id="tag-kleidung" text="kleidung" onClick={this.handleTag} />
+                        <CategoryTag id="tag-kleidung" text="kleidung" onClick={this.handleTag} />
+                        <CategoryTag id="tag-unternehmung" text="unternehmung" onClick={this.handleTag} />
                         <CategoryTag id="tag-unterhaltung" text="unterhaltung" onClick={this.handleTag} />
-                        <CategoryTag id="tag-putzen" text="putzen" onClick={this.handleTag} />
+                        <CategoryTag id="tag-haushaltsgeräte" text="haushaltsgeräte" onClick={this.handleTag} />
                         <CategoryTag id="tag-party" text="party" onClick={this.handleTag} />
+                        <CategoryTag id="tag-pc-problem" text="pc-problem" onClick={this.handleTag} />
                     </div>
                     <div className="button-container">
                         <LargeButton
