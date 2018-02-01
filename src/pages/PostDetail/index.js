@@ -64,16 +64,16 @@ export default class PostDetail extends Component {
     }
 
     handleSavedPostsDataChange = () => {
-        const id = this.props.match.params.id;
+        // const id = this.props.match.params.id;
         
 
-        let savedPosts = data.postId;
-        let savedPostsKeys = [];
-        savedPostsKeys = Object.keys(data);
+        // let savedPosts = data.postId;
+        // let savedPostsKeys = [];
+        // savedPostsKeys = Object.keys(data);
 
-        console.log(data);
-        console.log(savedPosts);
-        console.log(savedPostsKeys);
+        // console.log(data);
+        // console.log(savedPosts);
+        // console.log(savedPostsKeys);
         
         // for (let i = 0; i < savedPostsKeys.length; i++) {
         //     const savedPostKey = savedPostsKeys[i];
