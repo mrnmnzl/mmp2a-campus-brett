@@ -10,23 +10,26 @@
     }
 
     overflow: auto;
-}
 
-#warnings{
-    color: var(--light);
-    text-align: center;
-}
-    
-.button-container-search-result{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 50px;
-
-    .button-again{
-        margin-bottom: 10px;
+    #warnings{
+        font-size: 10px;
+        color: red;
+        text-align: center;
+        padding-bottom: 15px;
     }
+        
+    .button-container-search-result{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        .button-again{
+            margin-bottom: 10px;
+        }
+    }
+    
 }
+
 

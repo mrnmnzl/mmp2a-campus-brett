@@ -35,7 +35,7 @@ export default class SearchResult extends Component {
 
             for (let i = 0; i < postKeys.length; i++) {
                 const k = postKeys[i];
-                const name = 'Max Mustermann';
+                const name = postList[k].name;
                 let time = postList[k].time;
                 if (postList[k].time != null) {
                     time = time.substring(0, time.length - 3);
@@ -79,7 +79,7 @@ export default class SearchResult extends Component {
     render() {
         return (
             <React.Fragment>
-                <HeaderIcon text="SUCHERGEBNISSE" icon="back" onclick={this.handleBack}/>
+                <HeaderIcon text="SUCHERGEBNISSE" icon="back" onclick={this.handleSubmit}/>
                 <div className="posts-container-search-result" id="post-container">
                     <div id="warnings"></div>
                     {this.state.posts.map(post => {
@@ -87,7 +87,7 @@ export default class SearchResult extends Component {
                         return (
                             <Link to={path} key={post.time}>
                                 <Post
-                                    theme={this.category}
+                                    theme={this.state.category}
                                     key={post.id}
                                     name={post.name}
                                     time={post.time}

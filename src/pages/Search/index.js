@@ -23,29 +23,31 @@ export default class Search extends Component {
         this.setState({
             category: event.target.value
         });
-        console.log(event.target.value);
     }
 
     handleTag = value => {
         this.setState({
             tag: value
         });
-        console.log(value);
     }
 
-    handleSubmit = event => {
+    handleSubmit = value => {
         //if form is not correct
-        if (this.state.tag === '' || this.state.category === ''){
+        const tag = this.state.tag;
+        const category = this.state.category;
+        console.log('tag: ' + tag + ' category: ' + category);
+        if (tag === '' || category === ''){
             const container = document.getElementById('warnings');
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
             }
             container.insertAdjacentHTML('beforeend', '<p> Bitte fülle das Formular ganz aus </p>');
         }
-
-        const path = '/search/' + this.state.category + '/' + this.state.tag;
-        history.push(path);
-        console.log(path);
+        else{
+            const path = '/search/' + category + '/' + tag;
+            history.push(path);
+            console.log(path);
+        }
     }
 
     render() {
@@ -58,7 +60,7 @@ export default class Search extends Component {
                         <RadioCategory />
                     </div>
                     <Headline text="TAG" />
-                    <div className="tags-container">
+                    <div className="tags-container-search">
                         <CategoryTag text="werkzeug" onClick={this.handleTag} category={this.state.category}/>
                         <CategoryTag text="hilfe" onClick={this.handleTag} category={this.state.category}/>
                         <CategoryTag text="mitfahrgelegenheit" onClick={this.handleTag} category={this.state.category}/>
@@ -69,7 +71,7 @@ export default class Search extends Component {
                         <CategoryTag text="party" onClick={this.handleTag} category={this.state.category}/>
                     </div>
                     <div id="warnings"></div>
-                    <div className="button-container">
+                    <div className="button-container-search">
                         <LargeButton 
                             className="search-button"
                             text="SUCHEN" 
