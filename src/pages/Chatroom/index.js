@@ -3,108 +3,113 @@ import React from 'react';
 import { Component } from 'react';
 import HeaderIcon from '../../components/HeaderIcon';
 import InputField from '../../components/InputField';
-import './Chatroom.css';
+import Message from '../../components/Message';
 import { userId } from '../../components/EnsureLoggedInContainer';
 import { Link } from 'react-router-dom';
+import './Chatroom.css'
+
 
 export default class Chatroom extends Component {
     state = {
-        //die Nachricht
-        message: '',
-        //Array mit den Nachrichten 
-        messages: [],
-        
-        userName: '',
-        //Name of Person I chat with
+        //mitgegebene ChatID
+        chatID: this.props.match.params.userId,
+        userID: '',
         name: '',
-        //my own ID
         myID: userId,
-        //ID of the person I chat with
-        userID: this.props.match.params.userId,
-        //Chatnumber
-        chatID: this.props.match.params.chatId
+        message: '',
+        messages: []
     }
-
-    //live - cicle - method -> System calls this function is the conection to firebase
+ 
     //reload - must shown in Console
+    //getting username 
     componentDidMount(){
         console.log('componentDidMount');
 
-        let userId = this.state.userID;
+        //firebase conection to chats - getting ids and username from chatpartners
         firebase.database()
-        .ref('/users/' + userId)
+        .ref('/chats/' + this.state.chatID)
         .once('value')
         .then(snapshot => {
             this.setState({
-                name: snapshot.val().username
+                userID: snapshot.val().toUser,
+                name: snapshot.val().toUserName
             })
         });
+        
     }
-   
-    handleMessage = (event) => {
-        //console.log('update Message: ' + event.target.value);
+
+
+    //wenn man eine Nachricht ins InputFeld eingibt
+    handleMessage = event => {
         this.setState({
             message: event.target.value
         })
     }
 
-    //getting right messages 
-
-
+    //Wenn man den SENDEN - Button klickt
     handleSubmit = (event) => {
-        console.log('submit Message: ' + this.state.message)
-       //preparing next message
+        //preparing next message
         const nextMessage = {
-            id: this.state.message.length,
             text: this.state.message,
-            time: new Date().toLocaleString('de-DE', { hour12: false}),
-            //number of chats - connection to chats DB
-            noChat: this.state.chatID
         }
 
-        
-        
-        // firebase.database().ref('chats/').set(chat);
+        //write message in DB
+        this.saveNewMessage( 
+            this.state.userID, 
+            this.state.userId, 
+            nextMessage.time, 
+            nextMessage.text
+        );            
 
-        // firebase.database().ref('chats/messages/' + nextMessage.id).set(nextMessage);
-    
-    
         //list of messages
         var list = Object.assign([], this.state.messages);
         //send message in Chat 
         list.push(nextMessage);
+        //message in die Liste der Nachrichten speichern
         this.setState({
             messages: list
         })
-
+        //State der Message wieder auf null setzten
         this.setState({
             message: ''
         })
+ 
     }
 
-    handleBack = event => {
-        this.props.history.push('/messenger')
+    //Die Nachricht in DB speichern
+    saveNewMessage(toUser, fromUser, time, text){
+        const database = firebase.database();
+        const messageRef = database.ref('chats/messages' + this.state.uniqueID);
+        const newMessage = messageRef.push();
+        const date = new Date().toLocaleString('de-DE', { hour12: false });
+        
+        newMessage
+        .set({
+            toUser: toUser,
+            fromUser: fromUser,
+            time: date,
+            text: text
+        })
     }
+    
 
-    render() {
+    render(){
+        //Message die jemand abschickt
         const currentMessage = this.state.messages.map((message, i) => {
             return (
             <li key={message.id}>{message.text}</li>
             )
         })
-        //name for Person I chat with
-        const chatName = this.state.name
-        const path = 'messenger/' 
+
+        //Name of Person I chat with
+        const chatroomName = this.state.name;
         return (
             <React.Fragment>
-                <Link to={path}>
-                    <HeaderIcon text={chatName} icon="back" onClick={this.handleBack} /> 
+                <Link to="/messenger">
+                    <HeaderIcon text={chatroomName} icon="back" />
                 </Link>
                 <div className="container-chat">
-                    <ol className="chat-messages">
-                        {/* <span>{myName}</span> */}
-                        <span>{currentMessage}</span>
-                    </ol>
+                    <Message text={currentMessage} />
                     <div className="chat-bar">
                         <div className="chat-input" >
                             <InputField placeholder="Nachricht verfassen..." onChange={this.handleMessage} value={this.state.message}/>
