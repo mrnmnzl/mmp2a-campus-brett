@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+import * as firebase from 'firebase';
 import Navigation from '../../components/Navigation';
 import HeaderIcon from '../../components/HeaderIcon';
 import authentification from '../../services/Authentification';
@@ -13,17 +14,34 @@ import ProfileImage from '../../images/profile.png';
 
 export default class Profile extends Component {
     state = {
-        posts: []
+        posts: [],
+        name: '',
+        email: ''
     };
+    
+    componentWillMount() {
+        dataHandling.addDataChangeListener('posts', this.handlePostsDataChange);
+    }
+    
+    componentDidMount() {
+        let userId = firebase.auth().currentUser.uid;
+        let email = firebase.auth().currentUser.email;
+        firebase
+        .database()
+        .ref('/users/' + userId)
+        .once('value')
+        .then(snapshot => {
+            this.setState({
+                name: snapshot.val().username,
+                email: email
+            })
+        });
+    }
 
     handleLogout = () => {
         authentification.logout();
     };
-
-    componentWillMount() {
-        dataHandling.addDataChangeListener('posts', this.handlePostsDataChange);
-    }
-
+    
     handlePostsDataChange = data => {
         //TODO: Improve data query
         const postList = data.val();
@@ -31,7 +49,7 @@ export default class Profile extends Component {
         if (postList === null) {
             return;
         }
-        console.log(postList);
+       
         const postKeys = Object.keys(postList);
 
         let posts = [];
@@ -70,11 +88,13 @@ export default class Profile extends Component {
                 <HeaderIcon text="PROFIL" icon="logout" onClick={this.handleLogout} />
                 <div className="profile-detail-container">
                     <img src={ProfileImage} alt="Logo Campus Brett" />
-                    <p className="profile-name">Max Mustermann</p>
-                    <p className="profile-email">email@example.com</p>
+                    <p className="profile-name">{this.state.name}</p>
+                    <p className="profile-email">{this.state.email}</p>
                 </div>
-                <Headline className="profile-post-title" text="Eigene Beiträge" />
-                {/* <div className="posts-container-profile">
+                <div className="profile-title-container">
+                    <Headline text="Eigene Beiträge" />
+                </div>
+                <div className="posts-container-profile">
                     {this.state.posts.map(post => {
                         const path = '/post/' + post.id;
                         return (
@@ -92,7 +112,7 @@ export default class Profile extends Component {
                             </Link>
                         );
                     })}
-                </div> */}
+                </div>
                 <Navigation />
             </React.Fragment>
         );
