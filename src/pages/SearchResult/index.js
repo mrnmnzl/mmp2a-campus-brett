@@ -1,6 +1,5 @@
 import React from 'react';
 import { Component } from 'react';
-import Navigation from '../../components/Navigation';
 import HeaderIcon from '../../components/HeaderIcon';
 import SmallButton from '../../components/SmallButton';
 import dataHandling from '../../services/DataHandling';
