@@ -1,81 +1,136 @@
 import React from 'react';
 import { Component } from 'react';
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 import Navigation from '../../components/Navigation';
 import HeaderText from '../../components/HeaderText';
-import Chats from '../../components/Chats';
-import dataHandling from '../../services/DataHandling';
-import './Messenger.css'
+import Chat from '../../components/Chat';
+// import dataHandling from '../../services/DataHandling';
 import { Link } from 'react-router-dom';
-import { userId } from '../../components/EnsureLoggedInContainer/index';
+// import { history } from '../../App';
+import './Messenger.css';
 
 export default class Messenger extends Component {
-    state = {
-        chatWith: '',
-        myID: userId,
-        chats: []
-    }
+    // state = {
+    //     myId: firebase.auth().currentUser.uid,
+    //     receiverId: '',
+    //     chats: []
+    // };
 
-    //alle chats aus DB in Liste speichern und auf der Seite ausgeben
-    componentWillMount() {
-        dataHandling.addDataChangeListener('chats', this.handleChatsDataChange);
-    }
-    //alle chats aus DB in Liste speichern und auf der Seite ausgeben
-    handleChatsDataChange = data => {
-        //TODO: Improve data query
-        const chatList = data.val();
+    // componentWillMount() {
+    //     if(this.props.match.params.length === 0) {
+    //         this.setState({
+    //             myId: firebase.auth().currentUser.uid
+    //         })
+    //     } else {
+    //         this.setState({
+    //             myId: firebase.auth().currentUser.uid,
+    //             receiverId: this.props.match.params.userId
+    //         });
+    //     }
 
-        if (chatList === null) {
-            return;
-        }
+    //     dataHandling.addDataChangeListener('testChats', this.handleChatsDataChange);
+    // }
 
-        const chatKeys = Object.keys(chatList);
+    // handleChatsDataChange = data => {
+    //     const chatList = data.val();
 
-        let chats = [];
-        for (let i = 0; i < chatKeys.length; i++) {
-            const k = chatKeys[i];
-            const fromUser = chatList[k].fromUser;
-            const toUser = chatList[k].toUser;
-            const toUserName = chatList[k].toUserName;
+    //     if (chatList === null) {
+    //         return;
+    //     }
 
-            if(fromUser === userId || toUser === userId){
-                chats.push({
-                    id: k,
-                    fromUser: fromUser,
-                    toUser: toUser,
-                    toUserName: toUserName
-                });
-            }
+    //     const chatKeys = Object.keys(chatList);
 
-            this.setState({
-                chats: chats
-            });
-            console.log('chat' + chatKeys[i])
-            console.log('ich: ' + userId)
-        };
+    //     let availableChats = [];
+    //     for (let i = 0; i < chatKeys.length; i++) {
+    //         const k = chatKeys[i];
 
+    //         const user1 = chatList[k].user1;
+    //         const username1 = chatList[k].username2;
+    //         const user2 = chatList[k].user2;
+    //         const username2 = chatList[k].username2;
+
+
+
+    //         if(user1 === this.state.myId || user2 === this.state.myId) {
+    //             availableChats.push({
+    //                 id: k,
+    //                 user1: user1,
+    //                 username1: username1,
+    //                 user2: user2,
+    //                 username2: username2
+    //             });
+    //         }         
+    //     }
+
+    //     availableChats.reverse();
+    //     this.setState({
+    //         chats: availableChats
+    //     });
+    // }
+
+    // checkIfChatAvailable() {
+    //     const chats = this.state.chats;
+    //     for(let i = 0; i < chats.length; i++) {
+    //         if((chats[i].user1 === this.state.myId && chats[i].user2 === this.state.receiverId) ||
+    //         (chats[i].user2 === this.state.myId && chats[i].user1 === this.state.receiverId)) {
+    //             const path = 'chat/' + chats[i].id;
+    //             history.push(path);
+    //         }
+    //     } 
+
+    //     this.createNewChat();
+    // }
+
+    // componentDidMount() {
+    //     if(this.props.match === null) return;
+    //     this.checkIfChatAvailable();
+    // }
+
+    // createNewChat() {
+    //     console.log("Geht in CreateNewChat");
+    //     const database = firebase.database();
         
-    }
+    //     let user1 = firebase.auth().currentUser.uid;
+    //     let user2 = this.props.match.params.userId;
+        
+    //     let username1 = "Max Mustermann";
+    //     let username2 = "Martina Mustermann";
+        
+    //     // database
+    //     // .ref('/users/' + user1)
+    //     // .once('value')
+    //     // .then(snapshot => {
+    //     //     username1 = snapshot.val().username
+    //     // });
+        
+    //     // database
+    //     // .ref('/users/' + user2)
+    //     // .once('value')
+    //     // .then(snapshot => {
+    //     //     username2 = snapshot.val().username
+    //     // });
+        
+    //     const chatsRef = database.ref('testChats/');
+    //     const newChat = chatsRef.push();
+    //     const newChatKey = newChat.key;
 
-    render(){
+    //     newChat
+    //         .set({
+    //             user1: user1,
+    //             username1: username1,
+    //             user2: user2,
+    //             username2: username2,
+    //             messages: []
+
+    //         }).then(history.push("/chat/" + newChatKey));
+    // }
+
+    render() {
         return (
             <React.Fragment>
-                <HeaderText text="NACHRICHTEN"/>
+                <HeaderText text="NACHRICHTEN" />
                 <div className="chats-container">
-                {this.state.chats.map(chat => {
-                        const path = '/chat/' + chat.id;
-                        if(chat === null){
-                            <p> Keine Chats vorhanden </p>
-                        }
-                        return (
-                            //React braucht bei Iteratoren eindeutige Keys deswegen key=
-                            <Link to={path} key={chat.id}>
-                                <Chats
-                                    text={chat.toUserName}
-                                />
-                            </Link>
-                        );
-                    })}
+                
                 </div>
                 <Navigation />
             </React.Fragment>

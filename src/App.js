@@ -6,7 +6,7 @@ import HomeOffer from './pages/HomeOffer'
 import Profile from './pages/Profile';
 import SavedPosts from './pages/SavedPosts';
 import Messenger from './pages/Messenger';
-import MessengerRedirect from './pages/MessengerRedirect';
+// import MessengerRedirect from './pages/MessengerRedirect';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NewPost from './pages/NewPost';
@@ -32,11 +32,12 @@ class App extends Component {
                         <Route path="/profile" component={Profile} />
                         <Route path="/saved-posts" component={SavedPosts} />
                         <Route exact path="/messenger" component={Messenger} />
-                        <Route exact path="/messengerredirect/:fromId" component={MessengerRedirect} />
+                      
                         <Route path="/new-post" component={NewPost} />
                         <Route exact path="/search" component={Search} />
-                        <Route exact path="/chat" component={Chatroom} />
-                        <Route path="/chat/:userId" component={Chatroom} />
+                        <Route exact path="/chat/:chatId" component={Chatroom} />
+
+                        <Route path="/messenger/:userId" component={Messenger} />
                         <Route path="/edit-name" component={EditName} />
                         <Route path="/post/:id" component={PostDetail} />
                         <Route path="/search/:category/:tag" component={SearchResult} />
