@@ -130,7 +130,14 @@ export default class Messenger extends Component {
             <React.Fragment>
                 <HeaderText text="NACHRICHTEN" />
                 <div className="chats-container">
-                
+                    <Chat text="Susane Baum" />
+                    <Chat text="Gregor Birke" />
+                    <Chat text="Markus Stolz" />
+                    <Chat text="Miriam Neu" />
+                    <Chat text="Fabian Toll" />
+                    <Chat text="Marion Lieb" />
+                    <Chat text="Sementha Hase" />
+                    <Chat text="Martin Holz" />
                 </div>
                 <Navigation />
             </React.Fragment>
