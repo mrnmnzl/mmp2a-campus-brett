@@ -13,6 +13,7 @@ import NewPost from './pages/NewPost';
 import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 import Search from './pages/Search';
 import Chatroom from './pages/Chatroom';
+import FakeChatroom from './pages/FakeChatroom';
 import EditName from './pages/EditName';
 import PostDetail from './pages/PostDetail';
 import SearchResult from './pages/SearchResult/index';
@@ -32,12 +33,11 @@ class App extends Component {
                         <Route path="/profile" component={Profile} />
                         <Route path="/saved-posts" component={SavedPosts} />
                         <Route exact path="/messenger" component={Messenger} />
-                      
                         <Route path="/new-post" component={NewPost} />
                         <Route exact path="/search" component={Search} />
-                        <Route exact path="/chat/:chatId" component={Chatroom} />
-
-                        <Route path="/messenger/:userId" component={Messenger} />
+                        <Route exact path="/chat" component={Chatroom} />
+                        <Route exact path="/chatfake/:userID" component={FakeChatroom} />
+                        <Route path="/chat/:userId" component={Chatroom} />
                         <Route path="/edit-name" component={EditName} />
                         <Route path="/post/:id" component={PostDetail} />
                         <Route path="/search/:category/:tag" component={SearchResult} />
