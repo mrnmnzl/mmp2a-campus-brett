@@ -75,9 +75,7 @@ export default class PostDetail extends Component {
                     <p className="detail-post-description">{this.state.description}</p>
                     <span className="tag">{this.state.tag}</span>
                     <div id="detail-post-button-container">
-                        <Link to={this.state.chat}>
-                            <LargeButton text="EINE NACHRICHT SCHREIBEN" theme="light" />
-                        </Link>
+                        <LargeButton text="EINE NACHRICHT SCHREIBEN" theme="light" />
                         <Link to="/saved-posts">
                             <SmallButton text="Beitrag speichern" onClick={this.handleSavePost}/>
                         </Link>
