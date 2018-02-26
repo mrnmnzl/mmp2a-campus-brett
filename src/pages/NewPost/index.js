@@ -13,6 +13,20 @@ import { history } from '../../App';
 import './NewPost.css';
 import validator from 'validator';
 
+const tags = [
+    {id: 'tag-hilfe', text: 'hilfe'},
+    {id: 'tag-mitfahrgelegenheit', text: 'mitfahrgelegenheit'},
+    {id: 'tag-lebensmittel', text: 'lebensmittel'},
+    {id: 'tag-kleidung', text: 'kleidung'},
+    {id: 'tag-unternehmung', text: 'unternehmung'},
+    {id: 'tag-haushaltsgeraet', text: 'haushaltsgerät'},
+    {id: 'tag-unterhaltung', text: 'unterhaltung'},
+    {id: 'tag-party', text: 'party'},
+    {id: 'tag-pc-problem', text: 'pc-problem'},
+    {id: 'tag-werkzeug', text: 'werkzeug'},
+]
+
+
 export default class NewPost extends Component {
     state = {
         name: '',
@@ -20,7 +34,7 @@ export default class NewPost extends Component {
         title: '',
         description: '',
         tag: ''
-    };
+    }; 
 
     componentDidMount() {
         let userId = firebase.auth().currentUser.uid;
@@ -131,17 +145,9 @@ export default class NewPost extends Component {
                     />
                     <Headline text="TAG" />
                     <div className="tags-container" id="tags-container">
-                        <CategoryTag id="tag-werkzeug" text="werkzeug" onClick={this.handleTag} />
-                        <CategoryTag id="tag-hilfe" text="hilfe" onClick={this.handleTag} />
-                        <CategoryTag id="tag-mitfahrgelegenheit" text="mitfahrgelegenheit" onClick={this.handleTag} />
-                        <CategoryTag id="tag-lebensmittel" text="lebensmittel" onClick={this.handleTag} />
-                        <CategoryTag id="tag-kleidung" text="kleidung" onClick={this.handleTag} />
-                        <CategoryTag id="tag-kleidung" text="kleidung" onClick={this.handleTag} />
-                        <CategoryTag id="tag-unternehmung" text="unternehmung" onClick={this.handleTag} />
-                        <CategoryTag id="tag-unterhaltung" text="unterhaltung" onClick={this.handleTag} />
-                        <CategoryTag id="tag-haushaltsgeräte" text="haushaltsgeräte" onClick={this.handleTag} />
-                        <CategoryTag id="tag-party" text="party" onClick={this.handleTag} />
-                        <CategoryTag id="tag-pc-problem" text="pc-problem" onClick={this.handleTag} />
+                        {tags.map(tag => {
+                            return <CategoryTag id={tag.id} text={tag.text} onClick={this.handleTag} selected="false" />
+                        })}
                     </div>
                     <div className="button-container">
                         <LargeButton
