@@ -14,16 +14,16 @@ import './NewPost.css';
 import validator from 'validator';
 
 const tags = [
-    {id: 'tag-hilfe', text: 'hilfe'},
-    {id: 'tag-mitfahrgelegenheit', text: 'mitfahrgelegenheit'},
-    {id: 'tag-lebensmittel', text: 'lebensmittel'},
-    {id: 'tag-kleidung', text: 'kleidung'},
-    {id: 'tag-unternehmung', text: 'unternehmung'},
-    {id: 'tag-haushaltsgeraet', text: 'haushaltsgerät'},
-    {id: 'tag-unterhaltung', text: 'unterhaltung'},
-    {id: 'tag-party', text: 'party'},
-    {id: 'tag-pc-problem', text: 'pc-problem'},
-    {id: 'tag-werkzeug', text: 'werkzeug'},
+    { id: 'tag-hilfe', text: 'hilfe' },
+    { id: 'tag-mitfahrgelegenheit', text: 'mitfahrgelegenheit' },
+    { id: 'tag-lebensmittel', text: 'lebensmittel' },
+    { id: 'tag-kleidung', text: 'kleidung' },
+    { id: 'tag-unternehmung', text: 'unternehmung' },
+    { id: 'tag-haushaltsgeraet', text: 'haushaltsgerät' },
+    { id: 'tag-unterhaltung', text: 'unterhaltung' },
+    { id: 'tag-party', text: 'party' },
+    { id: 'tag-pc-problem', text: 'pc-problem' },
+    { id: 'tag-werkzeug', text: 'werkzeug' },
 ]
 
 
@@ -34,7 +34,7 @@ export default class NewPost extends Component {
         title: '',
         description: '',
         tag: ''
-    }; 
+    };
 
     componentDidMount() {
         let userId = firebase.auth().currentUser.uid;
@@ -78,6 +78,10 @@ export default class NewPost extends Component {
     handleClose = () => {
         history.goBack();
     };
+
+    handleClick = (e) => {
+        return this.state.tag;
+    }
 
     handleSubmit = () => {
         //Title Validation
@@ -146,7 +150,12 @@ export default class NewPost extends Component {
                     <Headline text="TAG" />
                     <div className="tags-container" id="tags-container">
                         {tags.map(tag => {
-                            return <CategoryTag id={tag.id} text={tag.text} onClick={this.handleTag} selected="false" />
+                            return <CategoryTag 
+                                        id={tag.id} 
+                                        text={tag.text} 
+                                        onClick={this.handleTag} 
+                                        selected={this.handleClick()} 
+                                        category={this.state.category} />
                         })}
                     </div>
                     <div className="button-container">
