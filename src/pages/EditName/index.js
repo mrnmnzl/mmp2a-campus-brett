@@ -76,7 +76,7 @@ export default class EditName extends Component {
                         className="submit-button"
                         theme="light"
                         text="SPEICHERN"
-                        id="save-button"
+                        id="save-name-button"
                         onClick={this.handleSubmit}
                     />
                 </div>
