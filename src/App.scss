@@ -43,6 +43,14 @@ body {
   background-color: var(--dark);
 }
 
+#validation {
+  padding: 0 20px 15px;
+  
+  font-size: 14px;
+  color: red;
+  text-align: center;
+}
+
 /*-----Color classes-----*/
 .dark {
   color: var(--dark);
