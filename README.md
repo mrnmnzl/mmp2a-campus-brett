@@ -6,6 +6,5 @@ Verwendete Technologien:
 - Firebase Hosting
 - React Router
 - ClassNames
-- React Router
 
 Zum Starten Repo clonen, `npm install` und `npm start`
